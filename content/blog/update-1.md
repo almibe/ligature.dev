@@ -1,0 +1,51 @@
+# Update 2021/06/13
+
+## Introduction
+
+Hello, I've decided to try to post some monthly/bi-weekly updates regarding Ligature
+just to give me a chance to review stuff I've been working on and focus on what needs attention.
+Since this is the first update I'm posting, I'm just going to mention what I've been doing for
+the past couple of weeks or so.
+
+## Switching Primary Focus to the Ligature-JS Project
+
+For a little bit I've been spending a lot of time working on the JVM implementation of Ligature,
+but recently I've decided to shift gears and spend more time on the JS ecosystem version.
+The reason for this is that I really want to get Ligature to a place where people can easily play
+with it and having demos in the browser that don't require a backend seems like the best way to
+do that.
+Previously I've had some issues with working with the JS version.
+Mainly, libraries like level-up and it's ilk don't have support for transactions which is pretty
+important for Ligature.
+I've decided recently to focus on a simple in-memeory version that has a form of in memory
+transactions using the immutatable library, and also experiment with a simple embedded server
+version using SQLite3.
+This should work well for me for now and after I get a working prototype up and running in JS,
+I can switch back to focusing on either the JVM version or the Rust version.
+
+## Specification Updates
+
+I've also been working on merging docs from implementation project READMEs into the specification.
+I'm trying to get project READMEs to be minimal and to point to things like this website and
+the specification.
+The Wander spec is still a mess, but I'm still doing a quite of bit of design and prototyping
+on that project so it's to be expected.
+I'm much happier with the rest but I still plan on revising all docs quite a bit.
+
+I've recently started working on a catalog of tests with the main goal of making it eaiser to
+keep track of where each version of Ligature is and to help people get a leg up if they
+decide to add a new implementation.
+
+## Website
+
+As I write this the website currently doesn't exist,
+so I'm working on getting this up as well.
+This mostly involves learning about 11ty, Netify, and GitHub actions.
+All things I've been meaning to do so it's been interesting.
+I'm pretty okay with a minimal design to start with so I'm not spending too much time on that.
+
+I started a write up that compares Ligature to RDF as well.
+I expect this document will be very helpful to people wondering why I created Ligature.
+I also expect this document to be under development for a while.
+There are a lot more differences between RDF and Ligature then I initially thought,
+and I have not even started work on Ligature's schema and ontology systems...
