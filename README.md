@@ -11,7 +11,7 @@ To server
 
 `npm run serve`
  
-and go to localhost:8000
+and go to localhost:8080
 
 ## Credits
 
