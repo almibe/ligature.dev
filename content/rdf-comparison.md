@@ -41,19 +41,32 @@ In RDF a Subject can either be an IRI or a Blank Node in Ligature an Entity can 
 ## Reification
 
 Reification is basically the ability to make Statements about Statements.
-Examples of why this is useful includes timestamping the creation date of a Statement, citing who added the Statement/the source of the Statement,
-or even stating which Statement another Statement supercedes.
-RDF mentions reifiaction in the specification doc (ADD LINK), but it doesn't really have first class support for reification.
+Examples of why this is useful includes time-stamping the creation date of a Statement, citing who added the Statement/the source of the Statement,
+or even stating which Statement another Statement supersedes.
+RDF mentions reification in the specification doc (ADD LINK), but it doesn't really have first class support for reification.
 Ligature on the other hand uses Contexts to aid with reification.
 A Context is a unique (for the given Dataset) Entity that identifies a given Statement.
 
 ## Not Using IRIs
 
+RDF uses IRIs to represent Subjects, Predicates, Objects, and Named Graphs.
+I don't think that many other systems use IRIs and even in RDF I think most people just use URLs or URIs
+(URNs aren't used very often but I suspect they are used more than IRIs).
+Granted URLs, URIs, and URNs *ARE* IRIs but I mean that the specific features of IRIs, namely using characters that aren't valid in URLs or URIs,
+aren't used often since URL encoding is a standard practice.
 
+Ligature doesn't use IRIs for two reasons.
+First, as mentioned URL encoding is pretty standard.
+Second, I feel that using IRIs makes working with local Datasets challenging.
+By local Datasets I mean Datasets that will never be shared as linked data.
+Crafting a valid IRI for an Entity that will only exist on my local machine seems a bit overkill to me.
+If I'm tracking pet records for example just using my pet's name is fine for an identifier in my opinion.
 
 ## Far Fewer Literal Types
 
+RDF supports an infinite number of literal types.
+Ligature currently supports four.
+There's more nuance here that I'll add later.
 
-
-## Interacting with Scripts (via Wander) Compared to Interacting with a Query Language (via SPARQL)
+## Supporting a Custom Scripting Language Compared to Using a Query Language or Using an Existing Language (Like JavaScript)
 

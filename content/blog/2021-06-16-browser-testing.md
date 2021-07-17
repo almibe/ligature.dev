@@ -13,7 +13,7 @@ look into it more closely, mainly around doing scans).
 For some reason I previously overlooked IndexedDB for some reason but it seems to have all the features
 I want in a store for Ligature.
 IndexedDB is interesting because it is a browser api so it can't be used directly from node.
-There does exist a shim project that allows use of its api in node and uses SQLite for storeage,
+There does exist a shim project that allows use of its api in node and uses SQLite for storage,
 but for now I wanted to focus on using the browser api directly.
 
 This leads to today's adventure of trying to figure out how exactly I wanted to test this code since
