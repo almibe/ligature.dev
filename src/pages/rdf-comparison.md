@@ -1,3 +1,7 @@
+---
+layout: ../layouts/Main.astro
+title: Comparing Ligature to RDF
+---
 # Comparing Ligature to RDF
 
 Ligature without a doubt takes a very large amount of inspiration from RDF.

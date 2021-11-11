@@ -1,2 +1,0 @@
-# Ligature's Model
-
