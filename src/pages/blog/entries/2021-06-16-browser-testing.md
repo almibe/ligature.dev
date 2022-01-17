@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/Main.astro
+layout: ../../../layouts/Main.astro
 title: Adventures in Browser Testing
 tags: blog
 date: 2021-06-16

@@ -15,9 +15,10 @@ and go to localhost:8080
 
 ## Credits
 
-This website makes use of the follow projects and libraries (a probably a few I'm forgetting)
+This website makes use of the follow projects and libraries (probably a few I'm forgetting)
 
- * [11ty](https://www.11ty.dev/)
+ * [Astro](https://astro.build/)
  * [Bulma](https://bulma.io)
+ * [Logo based on](https://emojipedia.org/openmoji/13.0/knot/)
  * [Comfortaa font](https://fonts.google.com/specimen/Comfortaa)
  * [Raleway font](https://fonts.google.com/specimen/Raleway)
