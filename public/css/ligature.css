@@ -16,8 +16,24 @@ p, div {
     font-family: 'Raleway';
 }
 
-.header img {
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header h1 {
+    margin-bottom: .2em;
 }
   
-.header h1 {
+.header h2 {
+    margin-top: .2em;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+li {
+    margin: .25em;
 }

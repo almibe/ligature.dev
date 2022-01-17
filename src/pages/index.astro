@@ -1,17 +1,17 @@
 ---
 import Main from "../layouts/Main.astro"
 
-const blogs = Astro.fetchContent("./blog/entries/*.md")
-
+const blogs = Astro.fetchContent("./blog/entries/*.md").sort((b1, b2) => {
+  if (b1.date < b2.date) {
+    return 1
+  } else if (b1.date > b2.date) {
+    return -1
+  } else {
+    return 0
+  }
+}).splice(0,5)
 ---
 <Main title="Ligature">
-  <div class="header">
-    <img src="img/logo.svg" alt="an image of a knot" height="100" width="100" />
-    <h1 class="title has-text-centered">Ligature</h1>
-  </div>
-
-  <h2 class="subtitle is-6 has-text-centered">A Libre Knowledge Graph</h2>
-
   <h3>What is Ligature?</h3>
 
   <p>Ligature is a libre (free and open source, MPL-2.0 licensed) knowledge graph that focuses on pragmatism, portability, and simplicity.
@@ -32,12 +32,13 @@ const blogs = Astro.fetchContent("./blog/entries/*.md")
 
   <h3>Development Blog</h3>
 
-  {blogs.sort().reverse().slice(0, 5).map((post) => (
-    <p>
-      <a href={post.url}>{post.title}</a>
-    </p>
-  ))}
-
+  <ul>
+    {blogs.map((post) => (
+      <li>
+        <a href={post.url}>{post.title}</a>
+      </li>
+    ))}
+  </ul>
   <a href="/blog/">See more.</a>
 
   <h3>Case Studies</h3>
