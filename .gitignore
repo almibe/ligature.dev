@@ -1,6 +1,7 @@
 # build output
 dist
 temp
+.parcel-cache
 
 # dependencies
 node_modules/
