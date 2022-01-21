@@ -1,13 +1,9 @@
----
-import '../../node_modules/blueprint-css/dist/blueprint.css'
-const {title} = Astro.props
----
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>{title}</title>
+  <title>{{title}}</title>
   <meta name="description" content="Ligature's website">
   <meta name="author" content="Alex Michael Berry">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,8 +19,7 @@ const {title} = Astro.props
         <h2 class="subtitle">A Libre Knowledge Graph</h2>
       </div>
     </div>
-    
-    <slot />
+    {{content}}
   </div>
 </body>
 </html>
