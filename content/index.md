@@ -9,6 +9,7 @@ It is currently under heavy design and development, and not ready for real world
 
 <p>Below are some resources to see where things are.</p>
 
+<%# Comment out for now
 <h3>Documentation</h3>
 
 <ul>
@@ -19,27 +20,32 @@ It is currently under heavy design and development, and not ready for real world
   <li>Wander</li>
   <li>Ligature-HTTP</li>  
 </ul>
+%>
 
 <h3>Development Blog</h3>
 
 <ul>
-  {blogs.map((post) => (
-    <li>
-      <a href={post.url}>{post.title}</a>
-    </li>
-  ))}
+  <% blogs.map((post) => { %>
+  <li>
+    <a href="<%= post.path %>"><%= post.data.title %></a>
+  </li>
+  <% }) %>
 </ul>
 <a href="/blog/">See more.</a>
 
+<%# Comment out for now
 <h3>Case Studies</h3>
 
 <p>I soon plan on documenting a couple of uses for Ligature in detail here.</p>
+%>
 
+<%# Comment out for now
 <h3>Playground</h3>
 
 <p>This is a proof of concept for now but it allows you to run the current version of Ligature completely in your browser with no server side component.</p>
 
 <a href="/playground/">Go to playground</a>
+%>
 
 <h3>Code Repositories</h3>
 
