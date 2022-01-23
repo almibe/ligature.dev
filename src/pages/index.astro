@@ -35,7 +35,7 @@ const blogs = Astro.fetchContent("./blog/entries/*.md").sort((b1, b2) => {
   <ul>
     {blogs.map((post) => (
       <li>
-        <a href={post.url}>{post.title}</a>
+        <a href={Astro.resolve(post.url)}>{post.title}</a>
       </li>
     ))}
   </ul>
