@@ -14,9 +14,9 @@
   "homepage": "https://github.com/almibe/ligature.dev#readme",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --experimental-static-build",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --experimental-static-build",
     "preview": "astro preview"
   },
   "devDependencies": {
