@@ -14,14 +14,18 @@
   "homepage": "https://github.com/almibe/ligature.dev#readme",
   "private": true,
   "scripts": {
-    "dev": "astro dev --experimental-static-build",
-    "start": "astro dev",
-    "build": "astro build --experimental-static-build",
-    "preview": "astro preview"
+    "prep": "node prep.js",
+    "astro:dev": "astro dev",
+    "astro:build": "astro build",
+    "astro:preview": "astro preview",
+    "dev": "run-s prep astro:dev",
+    "build": "run-s prep astro:build",
+    "preview": "run-s prep astro:preview"
   },
   "devDependencies": {
     "@astrojs/renderer-solid": "^0.3.1",
-    "astro": "^0.22.13"
+    "astro": "^0.22.13",
+    "npm-run-all": "^4.1.5"
   },
   "dependencies": {
     "blueprint-css": "^3.0.0-beta.0"
