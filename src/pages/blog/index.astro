@@ -11,8 +11,8 @@ const blogs = Astro.fetchContent("../blog/entries/*.md").sort((b1, b2) => {
   }
 })
 ---
-<SubPage title="Ligature">
-  <h3>Blog</h3>
+<SubPage title="Ligature: Development Blog">
+  <h3>Development Blog</h3>
 
   <ul>
     {blogs.sort().reverse().map((post) => (

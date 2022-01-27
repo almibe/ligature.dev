@@ -1,5 +1,6 @@
 ---
 import Main from "../layouts/Main.astro"
+import ligature from './documentation/1-ligature.astro'
 
 const blogs = Astro.fetchContent("./blog/entries/*.md").sort((b1, b2) => {
   if (b1.date < b2.date) {
@@ -22,12 +23,9 @@ const blogs = Astro.fetchContent("./blog/entries/*.md").sort((b1, b2) => {
   <h3>Documentation</h3>
 
   <ul>
-    <li>Introduction</li>
-    <li>Ligature</li>
-    <li>Lig</li>
-    <li>DLig</li>
-    <li>Wander</li>
-    <li>Ligature-HTTP</li>  
+    <li><a href="/documentation/1-ligature">Ligature</a> - Basic Data Format</li>
+    <li><a href="/documentation/2-lig">Lig</a> - Simple Serialization for Ligature</li>
+    <li><a href="/documentation/3-dlig">DLig</a> - User Input Format for Ligature</li>
   </ul>
 
   <h3>Development Blog</h3>
