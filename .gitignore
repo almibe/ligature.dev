@@ -4,6 +4,7 @@ dist
 # dependencies
 node_modules/
 
+# output from 11ty
 _site/
 
 # logs
@@ -19,4 +20,4 @@ yarn-error.log*
 .DS_Store
 
 #files copied before
-public/css/ext/
+css/ext/
