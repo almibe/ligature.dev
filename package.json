@@ -33,6 +33,7 @@
   "dependencies": {
     "@ligature/ligature": "^0.1.0",
     "@ligature/ligature-components": "^0.1.0",
-    "blueprint-css": "^3.0.0-beta.0"
+    "blueprint-css": "^3.0.0-beta.0",
+    "vite-plugin-solid": "^2.2.5"
   }
 }
