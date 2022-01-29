@@ -1,5 +1,7 @@
 let fs = require('fs')
-fs.rmSync("./public/css/ext", { recursive: true, force: true })
-fs.mkdirSync("./public/css/ext")
+fs.rmSync("./_site", { recursive: true, force: true })
+fs.rmSync("./dist", { recursive: true, force: true })
+fs.rmSync("./css/ext", { recursive: true, force: true })
+fs.mkdirSync("./css/ext")
 
-fs.copyFileSync("./node_modules/blueprint-css/dist/blueprint.min.css", "./public/css/ext/blueprint.min.css")
+fs.copyFileSync("./node_modules/blueprint-css/dist/blueprint.min.css", "./css/ext/blueprint.min.css")

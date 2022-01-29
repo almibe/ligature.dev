@@ -15,19 +15,24 @@
   "private": true,
   "scripts": {
     "prep": "node prep.js",
-    "astro:dev": "astro dev",
-    "astro:build": "astro build",
-    "astro:preview": "astro preview",
-    "dev": "run-s prep astro:dev",
-    "build": "run-s prep astro:build",
-    "preview": "run-s prep astro:preview"
+    "eleventy:build": "eleventy",
+    "eleventy:serve": "eleventy --serve",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "vite:preview": "vite preview",
+    "dev": "run-s prep eleventy:build vite:dev",
+    "preview": "run-s prep eleventy:build vite:build vite:preview",
+    "build": "run-s prep eleventy:build vite:build"
   },
   "devDependencies": {
-    "@astrojs/renderer-solid": "^0.3.1",
-    "astro": "^0.22.13",
-    "npm-run-all": "^4.1.5"
+    "@11ty/eleventy": "^1.0.0",
+    "axios": "^0.25.0",
+    "npm-run-all": "^4.1.5",
+    "vite": "^2.7.13"
   },
   "dependencies": {
+    "@ligature/ligature": "^0.1.0",
+    "@ligature/ligature-components": "^0.1.0",
     "blueprint-css": "^3.0.0-beta.0"
   }
 }

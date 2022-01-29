@@ -1,9 +1,0 @@
----
-import { Markdown } from 'astro/components'
-import Main from '../../layouts/Main.astro'
-const content = await fetch('https://raw.githubusercontent.com/almibe/ligature-documentation/main/lig.md').then(res => res.text())
----
-
-<Main title="Lig Serialization Format">
-    <Markdown content={content} />
-</Main>

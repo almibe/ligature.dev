@@ -1,0 +1,13 @@
+---
+layout: main.liquid
+title: "Ligature: Development Blog"
+---
+<h3>Development Blog</h3>
+
+<ul>
+  {% for blog in collections.blog reversed  %}
+    <li>
+      <a href="{{blog.url}}">{{blog.data.title}}</a>
+    </li>
+  {% endfor %}
+</ul>
