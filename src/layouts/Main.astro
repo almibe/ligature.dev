@@ -1,20 +1,28 @@
+---
+import '../styles/ligature.css';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>{{title}}</title>
+  <title>{title}</title>
   <meta name="description" content="Ligature's website">
   <meta name="author" content="Alex Michael Berry">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/img/logo.svg">
   <link rel="mask-icon" href="/img/logo.svg" color="#ffffff">
-  <link rel="stylesheet" href="/css/ext/blueprint.min.css">
-  <link rel="stylesheet" href="/css/ligature.css">
 </head>
 
 <body>
-  <div bp="container">
+  <div>
     <div class="header">
       <img src="/img/logo.svg" alt="an image of a knot" height="120" width="120"/>
       <div>
@@ -22,8 +30,7 @@
         <h2 class="subtitle">A Libre Knowledge Graph</h2>
       </div>
     </div>
-    
-    {{content}}
+		<slot />
   </div>
 </body>
 </html>

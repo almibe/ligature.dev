@@ -1,5 +1,5 @@
 ---
-layout: main.liquid
+layout: ../../../layouts/Blog.astro
 title: How Ligature-Scala is Currently Developed
 tags: blog
 date: 2022-02-27
