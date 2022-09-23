@@ -1,6 +1,9 @@
 ---
-//title: 'Ligature'
 import Layout from '../layouts/Main.astro';
+import { getStaticPaths } from './documentation/[document].astro';
+
+let documentationPaths = await getStaticPaths();
+console.log(`dp = ${documentationPaths}`)
 const posts = await Astro.glob('../pages/blog/entries/*.md');
 ---
 <Layout title="Ligature">
@@ -13,17 +16,16 @@ const posts = await Astro.glob('../pages/blog/entries/*.md');
   
   <h3>Documentation</h3>
   
+  <p>Below are links to the work in progress documentation for Ligature.
+  The repository for these documents can be found at 
+  <a href="https://github.com/almibe/ligature-documentation">https://github.com/almibe/ligature-documentation</a>.</p>
 
-  <!--
   <ul>
-    {% for doc in documentation %}
-      <li>
-        <a href="/documentation/{{doc.title | slug}}">{{doc.title}}</a> - {{doc.description}}
-      </li>
-    {% endfor %}
+    {documentationPaths.map((path) => (
+      <li><a href={`/documentation/${path.params.document}`}>{path.props.title}</a> - {path.props.description}</li>
+    ))}
   </ul>
-   -->
-  
+
   <h3>Development Blog</h3>
 
   <ul>
@@ -55,11 +57,11 @@ const posts = await Astro.glob('../pages/blog/entries/*.md');
   <ul>
     <li><a href="https://github.com/almibe/ligature-documentation">Ligature Documentation</a> - the documentation for the Ligature project.</li>
     <li><a href="https://github.com/almibe/ligature.dev">ligature.dev</a> - this website!</li>
-    <li><a href="https://github.com/almibe/ligature-scala">Ligature Scala</a> - an implementation of Ligature written in Scala for the JVM and JS ecosystems.</li>
-    <li><a href="https://github.com/almibe/ligature-rs">Ligature Rust</a> - an implementation of Ligature written in Rust.</li>
-    <li><a href="https://github.com/almibe/ligature-components">Ligature Components</a> - SolidJS UI components that support working with Ligature.</li>
-    <li><a href="https://github.com/almibe/ligature-pad">Ligature Pad</a> - A desktop application based on Tauri for working with Ligature.</li>
-  </ul>
+    <li><a href="https://github.com/almibe/ligature-kt">Ligature Kotlin</a> - an implementation of Ligature written in <a href="https://kotlinlang.org/">Kotlin</a> for the JVM and JS ecosystems.</li>
+    <li><a href="https://github.com/almibe/ligature-rs">Ligature Rust</a> - an implementation of Ligature written in <a href="https://www.rust-lang.org/">Rust</a>.</li>
+    <li><a href="https://github.com/almibe/ligature-web">Ligature Web</a> - A web frontend made with <a href="https://kit.svelte.dev/">SvelteKit</a> for working with Ligature.</li>
+    <li><a href="https://github.com/almibe/ligature-pad">Ligature Pad</a> - A desktop application based on <a href="https://tauri.app">Tauri</a> for working with Ligature.</li>
+  </ul>  
   
   <h3>Attribution</h3>
   

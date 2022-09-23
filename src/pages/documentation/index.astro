@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Main.astro';
+import { getStaticPaths } from './[document].astro';
+
+let documentationPaths = await getStaticPaths();
+---
+
+<Layout title="Ligature - Documentation">
+  <h2>Documentation</h2>
+
+  <ul>
+    {documentationPaths.map((path) => (
+      <li><a href={`${path.params.document}`}>{path.props.title}</a> - {path.props.description}</li>
+    ))}
+  </ul>
+
+  <a href="..">Home</a>
+</Layout>

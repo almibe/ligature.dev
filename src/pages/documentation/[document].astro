@@ -1,0 +1,44 @@
+---
+// Example: Fetch Markdown from a remote API 
+// and render it to HTML, at runtime.
+// Using "marked" (https://github.com/markedjs/marked)
+import { marked } from 'marked';
+import Layout from '../../layouts/Documentation.astro';
+
+export function getStaticPaths() {
+  return [
+    {
+      params: {
+        document: "ligature",
+      },
+      props: {
+        title: "Ligature",
+        description: "Basic Data Model",
+        contentUrl: "https://raw.githubusercontent.com/almibe/ligature-documentation/main/ligature.md"
+      }
+    },
+    {
+      params: {
+        document: "lig",
+      },
+      props: {
+        title: "Lig",
+        description: "Simple Serialization Format for Ligature",
+        contentUrl: "https://raw.githubusercontent.com/almibe/ligature-documentation/main/lig.md"
+      }
+    },
+  ]
+}
+
+const { title, description, contentUrl } = Astro.props;
+const response = await fetch(contentUrl);
+//The fix below is really hacky and should probably find a better way to handle this eventually.
+const markdown = (await response.text())
+  .replaceAll("[ligature.md](ligature.md#identifiers)", "[ligature](ligature#identifiers)");
+const content = marked.parse(markdown);
+
+---
+
+<Layout title={`Ligature - Documentation - ${title}`}>
+  <article set:html={content} />
+</Layout>
