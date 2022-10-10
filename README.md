@@ -1,6 +1,8 @@
 # ligature.dev
 Ligature's website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/55aeef3c-81f9-42b2-937a-64d25db87612/deploy-status)](https://app.netlify.com/sites/ligature-dev/deploys)
+
 ## Buidling
 
 To run the dev build run, and view at http://localhost:3000
