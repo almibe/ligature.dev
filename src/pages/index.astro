@@ -3,7 +3,6 @@ import Layout from '../layouts/Main.astro';
 import { getStaticPaths } from './documentation/[document].astro';
 
 let documentationPaths = await getStaticPaths();
-console.log(`dp = ${documentationPaths}`)
 const posts = await Astro.glob('../pages/blog/entries/*.md');
 ---
 <Layout title="Ligature">
@@ -44,8 +43,8 @@ const posts = await Astro.glob('../pages/blog/entries/*.md');
   </p>
   
   <ul>
-    <li><a href="/case-studies/personal-notetaking/">Personal Knowledge Management</a> - </li>
-    <li><a href="/case-studies/encoding-ttrpgs/">Encoding Tabletop Role-Playing Games</a> - </li>
+    <li><a href="/case-studies/personal-knowledge-management/">Personal Knowledge Management</a> - </li>
+    <li><a href="/case-studies/ttrpgs/">Encoding Tabletop Role-Playing Games</a> - </li>
     <li><a href="/case-studies/homosaurus/">Homosaurus</a> - </li>
   </ul>
   
