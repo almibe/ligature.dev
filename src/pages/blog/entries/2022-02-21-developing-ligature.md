@@ -7,6 +7,8 @@ date: 2022-02-27
 
 # How Ligature-Scala is Currently Developed
 
+**Note: This blog post is out of date. See [Running Ligature](/documentation/running-ligature) for similar docs that are up to date.**
+
 Hello I wanted to spend a little time today to document how I'm current developing Ligature-Scala.
 I'm sure this workflow will change eventually but for now it's working well enough for me.
 Ligature like much software today is polyglot.

@@ -23,6 +23,7 @@ const posts = await Astro.glob('../pages/blog/entries/*.md');
     {documentationPaths.map((path) => (
       <li><a href={`/documentation/${path.params.document}`}>{path.props.title}</a> - {path.props.description}</li>
     ))}
+    <li><a href="/documentation/running-ligature">Running Ligature</a> - Instructions for running Ligature locally.</li>
   </ul>
 
   <h3>Development Blog</h3>
