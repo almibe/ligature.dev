@@ -2,28 +2,33 @@
 layout: ../../layouts/Main.astro
 title: Running Ligature
 tags: documentation
-date: 2022-10-25
+updated: 2022-08-01
 ---
 
-## Running Ligature
+# Running Ligature
 
 In order to go through these steps you should first have the following applications setup:
 
  * [Git](https://git-scm.com/downloads) (required by all)
- * [OpenJDK](https://adoptium.net/) (ligature-kt, backend server and repl)
- * [Node](https://nodejs.org/en/download/) (ligature-desktop, ligature-components, ligature-web)
+ * [Cargo](https://rustup.rs/) (ligature-rs)
+ * [Node](https://nodejs.org/en/download/) (ligature-lab)
 
 ## Running the Backend Server
 
-To run the backend and have the data persisted with the Xodus database, follow these steps:
+To run the backend and have the data persisted with the SQLite3 database, follow these steps:
 
 ```bash
-git clone https://github.com/almibe/ligature-kt.git
-cd ligature-kt/ligature-http-xodus
-../gradle/gradlew run
+git clone https://github.com/almibe/ligature-rs.git
+cd ligature-rs/ligature-http
+cargo run
 ```
 
 It should now be running on localhost:4200.
+
+## Running Ligature Components demo application
+
+Ligature Components is a project that provides reusable Svelte Components for working with Ligature.
+This project includes a demo 
 
 ## Running Ligature Desktop
 
