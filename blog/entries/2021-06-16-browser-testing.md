@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/Blog.astro
+layout: Blog.mustache
 title: Adventures in Browser Testing
 tags: blog
 date: 2021-06-16

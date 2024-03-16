@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/Blog.astro
+layout: Blog.mustache
 title: Refashioning Ligature-Lab
 tags: blog
 date: 2021-06-29

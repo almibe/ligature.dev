@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Main.astro';
+import Layout from './src/layouts/Main.mustache';
 import { getStaticPaths } from './documentation/[document].astro';
 
 let documentationPaths = await getStaticPaths();
