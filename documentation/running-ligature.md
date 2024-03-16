@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/Main.astro
+layout: Main.mustache
 title: Running Ligature
 tags: documentation
 updated: 2022-08-01

@@ -1,6 +1,5 @@
 ---
-import Layout from '../../layouts/Main.astro';
-const posts = await Astro.glob('./entries/*.md');
+layout: Main.mustache
 ---
 <Layout title="Ligature: Development Blog">
   <h3>Development Blog</h3>

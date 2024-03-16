@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/Main.astro
+layout: Main.mustache
 title: Homosaurus Case Study
 ---
 

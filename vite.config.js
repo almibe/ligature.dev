@@ -22,6 +22,6 @@ function createConfig() {
     let data = processContent(content);
     return { date: data.date, url: url, title: data.title };
   });
-  let config = { layout: 'Blerg.mustache', data: { posts: blogPosts }, rootDir: __dirname };
+  let config = { layout: 'Main.mustache', data: { posts: blogPosts }, rootDir: __dirname };
   return config;
 }
