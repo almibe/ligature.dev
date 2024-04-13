@@ -12,17 +12,7 @@ const posts = await Astro.glob('../pages/blog/entries/*.md');
   It is currently under heavy design and development, and not ready for real world use, but experimentation and feedback are encouraged and much welcomed.</p>
   
   <p>Below are some resources to see where things are.</p>
-  
-  <h3>Development Blog</h3>
-
-  <ul>
-    {posts.reverse().slice(0,6).map((post) => (
-      <li>{post.frontmatter.date.split("T")[0]} - <a href={post.url}>{post.frontmatter.title}</a></li>
-    ))}
-  </ul>
-
-  <a href="/blog/">See more.</a>
-    
+      
   <h3>Code Repositories</h3>
   
   <p>
