@@ -2,8 +2,7 @@
   "name": "ligature.dev",
   "private": true,
   "version": "0.0.0",
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "typescript": "^5.3.3"

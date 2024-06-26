@@ -25,9 +25,9 @@ Typical standardized semantic networks are expressed as semantic triples.
 
 Ligature is made up of several parts each documented separately.
 
- * Data Model - the data model itself, called Ligature.
- * Text Encoding - the textual representation of the data model, also called Ligature (similar to how XML uses the name XML for both the data model and text format).
- * Wander - a scripting language that is a set of extentions to the text model that allows for querying and manipulation of Networks.
+ * [Data Model](/specification/ligature-model/) - the data model itself, called Ligature.
+ * [Text Encoding](/specification/ligature-format/) - the textual representation of the data model, also called Ligature (similar to how XML uses the name XML for both the data model and text format).
+ * [Wander](/specification/wander/) - a scripting language that is a set of extentions to the text model that affords querying and transforming Networks.
 
 <h3>Implementations and Related Tools</h3>
 
