@@ -3,17 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "glob": "^10.3.10",
-    "marked": "^11.1.0",
-    "mustache": "^4.2.0",
-    "nail-clipper-screwdriver": "^0.4.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.8"
+    "typescript": "^5.3.3"
   }
 }

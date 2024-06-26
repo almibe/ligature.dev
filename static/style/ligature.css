@@ -44,3 +44,8 @@ body {
     display: block;
     max-width: 1000px;
 }
+
+blockquote {
+    background-color: #F0F0F0;
+    padding: 1em;
+}
