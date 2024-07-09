@@ -1,7 +1,7 @@
 const fs = require("fs")
 
 const printTitle = (fileName) => {
-    if (fileName.contains("wander")) {
+    if (fileName.includes("wander")) {
         return "Wander"
     } else {
         return "Ligature"
@@ -25,6 +25,7 @@ async function setup() {
                 .then(async (res)=> {
                     const text = await res.text()
                     const fileName = url.split("/").at(-1)
+                    console.log("filename", fileName)
                     fs.writeFileSync("src/specification/" + fileName, frontMatter(fileName) + text)
                 }))
         return Promise.all(promises)

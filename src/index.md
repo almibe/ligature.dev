@@ -24,23 +24,32 @@ Typical standardized semantic networks are expressed as semantic triples.
 That article contains an example semantic network.
 Below is that semantic network expressed in Ligature (I switched from using "is a" and "is an" to just "isa" and "lives in" to "lives-in" but those are the only changes).
 
+<div id="demo">
+
+<div id="demo-markup">
+
 ```wander
 {
   `Cat` {`has` `Fur`, `isa` `Mammal`},
   `Bear` {`has` `Fur`, `isa` `Mammal`},
   `Whale` {`lives-in` `Water`, `isa` `Mammal`},
-  `Mammal` { `has` `Vertebra`}, { `isa` `Animal`},
-  `Fish` { `lives-in` `Water`}, { `isa` `Animal`},
+  `Mammal` { `has` `Vertebra`, `isa` `Animal`},
+  `Fish` { `lives-in` `Water`, `isa` `Animal`},
 }
 ```
+
+</div>
+
+<div id="demo-graph"></div>
+
+</div>
 
 <h3>Learning More</h3>
 
 Ligature is made up of several parts each documented separately.
 
- * [Data Model](/specification/ligature-model/) - the data model itself, called Ligature.
- * [Text Encoding](/specification/ligature-format/) - the textual representation of the data model, also called Ligature (similar to how XML uses the name XML for both the data model and text format).
- * [Wander](/specification/wander/) - a scripting language that is a set of extentions to the text model that affords querying and transforming Networks.
+ * [Ligature](/specification/ligature/) - the data model itself, called Ligature.
+ * [Wander](/specification/wander/) - a scripting language that  querying and transforming Networks.
 
 <h3>Implementations and Related Tools</h3>
 
@@ -69,3 +78,5 @@ Ligature is made up of several parts each documented separately.
   <li><a href="https://fonts.google.com/specimen/Comfortaa">Comfortaa font</a></li>
   <li><a href="https://fonts.google.com/specimen/Raleway">Raleway font</a></li>
 </ul>
+
+<script type="module" src="/assets/index.js"></script>

@@ -48,4 +48,22 @@ body {
 blockquote {
     background-color: #F0F0F0;
     padding: 1em;
+    border-radius: .75em;
+}
+
+#demo {
+    display: grid;
+	align-items: center;
+}
+
+#demo-markup {
+    grid-column: 1;
+    grid-row: 1
+}
+
+#demo-graph {
+    width: 600px;
+    height: 400px;
+    grid-column: 2;
+    grid-row: 1;
 }
