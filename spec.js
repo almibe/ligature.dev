@@ -1,16 +1,23 @@
 const fs = require("fs")
 
-const frontMatter = (title) => `---
-layout: Main.mustache
-title: ${title}
+const printTitle = (fileName) => {
+    if (fileName.contains("wander")) {
+        return "Wander"
+    } else {
+        return "Ligature"
+    }
+}
+
+const frontMatter = (fileName) => `---
+layout: Main.liquid
+title: ${printTitle(fileName)}
 ---
 `
 
 async function setup() {
     if (!fs.existsSync("src/specification")) {
         fs.mkdirSync("src/specification")
-        const urls = ['https://raw.githubusercontent.com/almibe/ligature-specification/main/ligature-format.md',
-            'https://raw.githubusercontent.com/almibe/ligature-specification/main/ligature-model.md',
+        const urls = ['https://raw.githubusercontent.com/almibe/ligature-specification/main/ligature.md',
             'https://raw.githubusercontent.com/almibe/ligature-specification/main/wander.md']
         const promises = urls.map(
             (url) =>
