@@ -22,11 +22,8 @@ Typical standardized semantic networks are expressed as semantic triples.
 </blockquote>
 
 That article contains an example semantic network.
-Below is that semantic network expressed in Ligature (I switched from using "is a" and "is an" to just "isa" and "lives in" to "lives-in" but those are the only changes).
-
-<div id="demo">
-
-<div id="demo-markup">
+Below is that semantic network expressed in Ligature. 
+I switched from using "is a" and "is an" to just "isa" and "lives in" to "lives-in" but those are the only changes.
 
 ```wander
 {
@@ -37,12 +34,6 @@ Below is that semantic network expressed in Ligature (I switched from using "is 
   `Fish` { `lives-in` `Water`, `isa` `Animal`},
 }
 ```
-
-</div>
-
-<div id="demo-graph"></div>
-
-</div>
 
 <h3>Learning More</h3>
 
@@ -78,5 +69,3 @@ Ligature is made up of several parts each documented separately.
   <li><a href="https://fonts.google.com/specimen/Comfortaa">Comfortaa font</a></li>
   <li><a href="https://fonts.google.com/specimen/Raleway">Raleway font</a></li>
 </ul>
-
-<script type="module" src="/assets/index.js"></script>
