@@ -2,14 +2,14 @@
 
 * This document is in the process of being rewritten, so parts are incorrect. *
 
-This document assumes you are familiar with Ligature's data model.
+* This document assumes you are familiar with Ligature's data model. *
 
 Wander is a scripting language for working with Ligature's data model.
 It is a very simple programming language that is missing many features most languages possess.
 It takes inspiration from several programming paradigms including concatentive programming, functional programming,
 logic programming, and declarative programming.
-Its main features are allowing users to easily write out Ligature Networks and calls functions on them to query and transform.
-While Wander's focus is on working with Ligature it can be used as a general purpose scripting language as well.
+Its main features are allowing users to easily write out Ligature Networks and use Combinators on them to query and transform data.
+While Wander's focus is on working with Ligature it can be used as a general purpose scripting language as well (it really isn't ready for that yet though).
 
 ## Status
 
@@ -18,17 +18,53 @@ Expect changes and some differences between this document and implementations fo
 
 ## Goals of Wander
 
- - be a small (no keywords, no user defined types or functions*) and easy to learn language
- - make heavy use of iterators (no manual loops), composition, and pattern matching to solve problems
+ - be a small (no keywords, no user defined types) and easy to learn language
  - be easy to implement and also provide tooling for
-
-* Note: You can't define functions in Wander, but you can define functions in a host language and expose them to Wander.
 
 ## Basics
 
 A Wander script is made up of a list of Elements.
-An Element can be a Literal, a Quote, a Word, or a MetaElement.
-Two examples of MetaElements are Comments and Definitions.
+An Element can be a Literal, a Quote, a Word, or a Special Form.
+Two examples of Special Forms are Comments and Definitions.
+When a script is ran each Element in the list is evaluated.
+Literals and Quotes get put on the Datastack (more about this soon).
+Words are used to transform the datastack.
+Special Forms do something Special!
+
+This is the model for Ligature given earlier:
+
+```
+Value =
+    | Identifier(string)
+    | Slot(string)
+    | NetworkName(string)
+    | String(string)
+    | Int(bigint)
+    | Bytes(Array[u8])
+    | Pipeline(Array[Value])
+    | Network = { triples: Set[Triple] }
+Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
+```
+
+Wander can be viewed as an expansion of this model:
+
+```
+Value =
+    | Identifier(string)
+    | Slot(string)
+    | NetworkName(string)
+    | String(string)
+    | Int(bigint)
+    | Bytes(Array[u8])
+    | Pipeline(Array[Value])
+    | Network = { triples: Set[Triple] }
+Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
+Element =
+    | Network(Value.Network)
+    | Call(Identifier)
+    | NetworkName(Value.NetworkName)
+Script = Array[Element]
+```
 
 ## Writing Literals
 
@@ -40,7 +76,7 @@ Identifiers are wrapped in back ticks.
 ```wander
 1
 "Hello,\nworld!"
-`https://ligature.dev`
+https://ligature.dev
 ```
 
 Bytes don't have a literal, I'll talk about them later in the section marked `Function Calls`.
@@ -51,14 +87,20 @@ Network literals define a set of Triples that are treated as a collection.
 
 ```wander
 {
-  `a` `b` `c`,
-  `b` `c` `d`
+  a b c,
+  b c d
 }
 ```
 
 TODO: mention Value lists and Entity expansions.
 
-## Comments
+## Special Forms
+
+Everything in Wander is a Word, a Literal, or a Special Form.
+Special forms allow you to break out of the strict processing of Wander.
+They are wrapped in parenthesis and each have their own syntax.
+
+## Comment Special Form
 
 Comments in Ligature are marked by starting with `--` and being wrapped in parenthesis.
 
@@ -66,25 +108,12 @@ Comments in Ligature are marked by starting with `--` and being wrapped in paren
 24601 (-- what does this even mean?)
 ```
 
-## Definition
+## Definition Special Form
 
 A Definition assigns a Quote to a Word using the `=` operator and wrapping it in parenthesis.
 
 ```wander
 ( new-word = [ 1 2 3 Int.sum ] )
-```
-
-## Identifier Concatenation
-
-One of the benefits of having variables is being able to reuse parts of an identifier.
-
-```wander
-base = `https://github.com/almibe/ligature-specification/`,
-file = `README.md`,
--- all of the lines below result in the same Identifier
-base:file,
-base:"README.md",
-base:`README.md`,
 ```
 
 ## Literal Types
@@ -98,8 +127,8 @@ base:`README.md`,
  * Identifier - Identifiers are wrapped in back ticks, just like in Ligature
   * \`hello\`
   * \`https://ligature.dev\`
- * Quotes
-  * [1, 2, "Hello"]
+ * Pipeline
+  * [ { } id ]
  * Associative Arrays
   * [ x = 5, y = "Hello" ]
  * Networks
@@ -119,7 +148,8 @@ Quotes are a list of
 
 ## Words
 
-Words in Wander are used for variable names in scripts.
+Words in Wander are represent combinators that transform the datastack.
+Words can be provided by the host or defined by a user.
 A valid Word identifier starts with a-z, A-Z, or _ and then includes zero of more characters from the same set or numbers.
 
 ```regex
@@ -139,47 +169,3 @@ They are wrapped in square brackets and look like a series of bindings.
 
 Everything in Wander can be viewed as an expression.
 By expression I mean they result in a value.
-
-## Currying
-
-
-
-## Pipe Operator
-
-Often you want to use the result of one expression inside of another expression.
-
-```
-(or false (not(not(true)))) -- true
-```
-
-Some people (myself included) find reading code like this difficult.
-To help with this languages like Wander provide an alternative syntax for calling functions
-that encourages thinking about a pipeline of transformations.
-In Wander this is done with the `|` or pipe operator.
-
-Below are two examples of calling a function normally and then using the pipe operator.
-
-```wander
--- examples with single argument function
-not true, -- false
-true.not, -- false
-
--- examples with multiple argument function
-or false true, -- true
-false.or true, -- true
-```
-
-This can be expanded to change calls.
-Below is the same expression written on one line and broken up into multiple lines.
-
-```
-true.not.not.or false, -- true
-
-true
-  .not
-  .not
-  .or false,           -- true
-
-```
-
-I personally find the last example easier to read and edit than the initial example I started this section with.

@@ -21,26 +21,13 @@ A semantic network may be instantiated as, for example, a graph database or a co
 Typical standardized semantic networks are expressed as semantic triples.
 </blockquote>
 
-That article contains an example semantic network.
-Below is that semantic network expressed in Ligature. 
-I switched from using "is a" and "is an" to just "isa" and "lives in" to "lives-in" but those are the only changes.
-
-```wander
-{
-  `Cat` {`has` `Fur`, `isa` `Mammal`},
-  `Bear` {`has` `Fur`, `isa` `Mammal`},
-  `Whale` {`lives-in` `Water`, `isa` `Mammal`},
-  `Mammal` { `has` `Vertebra`, `isa` `Animal`},
-  `Fish` { `lives-in` `Water`, `isa` `Animal`},
-}
-```
-
 <h3>Learning More</h3>
 
 Ligature is made up of several parts each documented separately.
 
- * [Ligature](/specification/ligature/) - the data model itself, called Ligature.
- * [Wander](/specification/wander/) - a scripting language that  querying and transforming Networks.
+ * [Ligature](/doc/ligature/) - the data model itself, called Ligature.
+ * [Wander](/doc/wander/) - a scripting language that  querying and transforming Networks.
+ * [Combinators](/doc/combinators/) - an overview of the Combinators provided by Wander.
 
 <h3>Implementations and Related Tools</h3>
 

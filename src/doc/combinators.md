@@ -1,29 +1,15 @@
-# Functions
-
-## `count`
-
-Count will count the number of Triples in a Network.
-
-```wander
-assertEqual "Empty Networks should contain 0 Triples" (count {}) 0
-```
-
-```wander
-assertEqual "Count Network with multiple Triples." 
-    (count {`a` {`b` [`c`, `d`], { `e`, `f` }} })
-    3
-```
+# Combinators
 
 ## `union`
 
 Combine two Networks.
 
 ```wander
-union {`a` `b` `c`} {}
-```
-
-```wander
-union {`a` `b` `c`} {`d` `e` `f`}
+@a {a b c}
+@b {d e f}
+@ { left = @a, right = @b, out = @out }
+union
+@out
 ```
 
 ## `minus`
