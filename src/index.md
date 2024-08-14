@@ -21,6 +21,20 @@ A semantic network may be instantiated as, for example, a graph database or a co
 Typical standardized semantic networks are expressed as semantic triples.
 </blockquote>
 
+That article contains an example semantic network.
+Below is that semantic network expressed in Ligature. 
+I replaced "is a" and "is an" with a colon and changed "lives in" to "lives-in" but those are the only changes.
+
+```wander
+{
+  Cat : Mammal, Cat has Fur,
+  Bear : Mammal, Bear has Fur,
+  Whale : Mammal, Whale lives-in Water,
+  Mammal : Animal, Mammal has Vertebra,
+  Fish : Animal, Fish lives-in Water,
+}
+```
+
 <h3>Learning More</h3>
 
 Ligature is made up of several parts each documented separately.
