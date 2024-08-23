@@ -1,3 +1,7 @@
+---
+layout: Main.liquid
+---
+
 # Wander
 
 * This document is in the process of being rewritten, so parts are incorrect. *
@@ -16,156 +20,72 @@ While Wander's focus is on working with Ligature it can be used as a general pur
 Work on Wander is still in early days.
 Expect changes and some differences between this document and implementations for the time being.
 
-## Goals of Wander
-
- - be a small (no keywords, no user defined types) and easy to learn language
- - be easy to implement and also provide tooling for
-
-## Basics
+## Model
 
 A Wander script is made up of a list of Elements.
-An Element can be a Literal, a Quote, a Word, or a Special Form.
-Two examples of Special Forms are Comments and Definitions.
+An Element can be a Network, a Quote, or a Path.
 When a script is ran each Element in the list is evaluated.
-Literals and Quotes get put on the Datastack (more about this soon).
-Words are used to transform the datastack.
-Special Forms do something Special!
 
 This is the model for Ligature given earlier:
 
 ```
 Value =
-    | Identifier(string)
+    | Name(string)
+    | Path(Array<Name>)
     | Slot(string)
-    | NetworkName(string)
     | String(string)
     | Int(bigint)
-    | Bytes(Array[u8])
-    | Pipeline(Array[Value])
-    | Network = { triples: Set[Triple] }
+    | Bytes(Array<u8>)
+    | Pipeline(Array<Pipeline | Path | Network>)
+    | Network = { statements: Set<Statement> }
 Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
 ```
 
 Wander can be viewed as an expansion of this model:
 
 ```
-Value =
-    | Identifier(string)
-    | Slot(string)
-    | NetworkName(string)
-    | String(string)
-    | Int(bigint)
-    | Bytes(Array[u8])
-    | Pipeline(Array[Value])
-    | Network = { triples: Set[Triple] }
-Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
 Element =
-    | Network(Value.Network)
-    | Call(Identifier)
-    | NetworkName(Value.NetworkName)
+    | Value.Network
+    | Value.Path
+    | Value.Pipeline
 Script = Array[Element]
 ```
 
-## Writing Literals
+## How Interpretation Works
 
-Most literals in Ligature are written out how they would be in similar formats.
-Strings follow the rules of JSON.
-Numbers are written out like Integers in most programming languages.
-Identifiers are wrapped in back ticks.
+When you run a Wander script each Element is interpreted separately and in the order it is recieved.
+When each element is ran you can think of it as being implicitly passed a Network and returning a Network.
+If you run multiple Elements then the output Network of one Element is passed as the input of the next.
+Below I will go over how each of the three types of Elements is interpreted.
 
-```wander
-1
-"Hello,\nworld!"
-https://ligature.dev
+### Networks
+
+Networks are the easiest.
+The Network you are interpreting is simply unioned with the Network that is passed implicitly to it and the result is returned.
+
+```
+{a b c}
+{d e f}
+{}
+{a a a, d e f, z z z}
 ```
 
-Bytes don't have a literal, I'll talk about them later in the section marked `Function Calls`.
+If the code above was ran as a Wander script it would interpret three different Networks.
+Assuming the initial Network was empty, you would end with {a a a, a b c, d e f, z z z}.
 
-## Writing Networks
+### Paths
 
-Network literals define a set of Triples that are treated as a collection.
+When the interpreter is given a Path
 
-```wander
-{
-  a b c,
-  b c d
-}
+### Quotes
+
+When a quote is ran a copy of the working state is made and it is used when making calls.
+This allows you to make calls with arguments without polluting your working state.
+It also allows you to build more complicated chains of calls and name them so they can be used later.
+
+```
+{ a b c } [ {d e f} ]
 ```
 
-TODO: mention Value lists and Entity expansions.
+This code would result in 
 
-## Special Forms
-
-Everything in Wander is a Word, a Literal, or a Special Form.
-Special forms allow you to break out of the strict processing of Wander.
-They are wrapped in parenthesis and each have their own syntax.
-
-## Comment Special Form
-
-Comments in Ligature are marked by starting with `--` and being wrapped in parenthesis.
-
-```wander
-24601 (-- what does this even mean?)
-```
-
-## Definition Special Form
-
-A Definition assigns a Quote to a Word using the `=` operator and wrapping it in parenthesis.
-
-```wander
-( new-word = [ 1 2 3 Int.sum ] )
-```
-
-## Literal Types
-
- * Int - a signed, unbound Integer value, similar to a BigInt in most programming langauge
-  * 0
-  * -20
- * String - a UTF-8 string, that follows the encoding definition of a JSON string
-  * "Hello"
-  * "Hello\tWorld\n"
- * Identifier - Identifiers are wrapped in back ticks, just like in Ligature
-  * \`hello\`
-  * \`https://ligature.dev\`
- * Pipeline
-  * [ { } id ]
- * Associative Arrays
-  * [ x = 5, y = "Hello" ]
- * Networks
-  * { \`a\` \`b\` \`c\`, \`five\` \`=\` 5 }
-
-## Quotes
-
-Quotes are a list of 
-
-```wander
-[1, 2, 3],              -- A Sequence of Integers
-[`a`, `b`, `c`],        -- A Sequence of Identifiers
-[`a` `b` `c`],          -- A Sequence of Triples, no commas between Identifiers
-[],                     -- An empty Array
-[[1], [], [45 -23]],    -- An Array of Arrays of Integers
-```
-
-## Words
-
-Words in Wander are represent combinators that transform the datastack.
-Words can be provided by the host or defined by a user.
-A valid Word identifier starts with a-z, A-Z, or _ and then includes zero of more characters from the same set or numbers.
-
-```regex
-[a-zA-Z_][a-zA-Z0-9_]*(.[a-zA-Z_][a-zA-Z0-9_]*)*
-```
-
-## Associative Arrays
-
-Associative Arrays are a data structure that holds key-value pairs where the key is a Name and the value is any valid Ligature Value (Int, Bool, String, Slot, Identifier).
-They are wrapped in square brackets and look like a series of bindings.
-
-```wander
-[ digit = 5, text = "five" ]
-```
-
-## Expressions
-
-Everything in Wander can be viewed as an expression.
-By expression I mean they result in a value.
