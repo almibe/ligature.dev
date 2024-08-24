@@ -11,12 +11,11 @@ Below is psudeocode for Ligature's data model.
 ```
 Value =
     | Name(string)
-    | Path(Array<Name>)
     | Slot(string)
     | String(string)
     | Int(bigint)
     | Bytes(Array<u8>)
-    | Pipeline(Array<Pipeline | Path | Network>)
+    | Pipeline(Array<Pipeline | Name | Network>)
     | Network = { statements: Set<Statement> }
 Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
 ```
@@ -34,7 +33,7 @@ There are two types of Names in Ligature, regular and IRI-compatible.
 Regular names must match the following regex
 
 ```regexp
-^[a-zA-Z_=:][a-zA-Z_0-9]*$
+^[a-zA-Z_=:.][a-zA-Z0-9_=:.]*$
 ```
 
 IRI compatiable names allow more characters but must be wrapped in back ticks ``` `` ```.
@@ -125,5 +124,11 @@ When written out wrap a network in braces `{}` and separate Statements with a co
 {a b c}
 
 {a b c, d e 6}
+
+{a b c, d = {d e f, a b {} } }
 ```
 
+### Pipeline
+
+A Pipeline represents a list of Elements.
+It is used to chain combinators and scope arguments in Wander, but could be used by other interpreters as well.

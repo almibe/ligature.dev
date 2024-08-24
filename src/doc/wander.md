@@ -31,12 +31,11 @@ This is the model for Ligature given earlier:
 ```
 Value =
     | Name(string)
-    | Path(Array<Name>)
     | Slot(string)
     | String(string)
     | Int(bigint)
     | Bytes(Array<u8>)
-    | Pipeline(Array<Pipeline | Path | Network>)
+    | Pipeline(Array<Pipeline | Name | Network>)
     | Network = { statements: Set<Statement> }
 Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
 ```
@@ -46,7 +45,7 @@ Wander can be viewed as an expansion of this model:
 ```
 Element =
     | Value.Network
-    | Value.Path
+    | Value.Name
     | Value.Pipeline
 Script = Array[Element]
 ```
@@ -73,9 +72,10 @@ The Network you are interpreting is simply unioned with the Network that is pass
 If the code above was ran as a Wander script it would interpret three different Networks.
 Assuming the initial Network was empty, you would end with {a a a, a b c, d e f, z z z}.
 
-### Paths
+### Names
 
-When the interpreter is given a Path
+When the interpreter is given a Name the working state is checked to see if it contains that value,
+and if it does not exist there the instance's combinators are checked to see if one matches.
 
 ### Quotes
 
@@ -86,6 +86,4 @@ It also allows you to build more complicated chains of calls and name them so th
 ```
 { a b c } [ {d e f} ]
 ```
-
-This code would result in 
 
