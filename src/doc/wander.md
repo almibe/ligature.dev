@@ -1,5 +1,5 @@
 ---
-layout: Main.liquid
+layout: Doc.liquid
 ---
 
 # Wander
