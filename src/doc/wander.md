@@ -32,12 +32,13 @@ This is the model for Ligature given earlier:
 Value =
     | Name(string)
     | Slot(string)
+    | NetworkName(string)
     | String(string)
     | Int(bigint)
     | Bytes(Array<u8>)
     | Pipeline(Array<Pipeline | Name | Network>)
-    | Network = { statements: Set<Statement> }
-Statement = { entity: Identifier | Slot, attribute: Identifier | Slot, value: Value }
+Statement = { entity: Name | Slot, attribute: Name | Slot, value: Value }
+Network = Set<Statement>
 ```
 
 Wander can be viewed as an expansion of this model:
@@ -46,6 +47,7 @@ Wander can be viewed as an expansion of this model:
 Element =
     | Value.Network
     | Value.Name
+    | Value.NetworkName
     | Value.Pipeline
 Script = Array[Element]
 ```
@@ -76,6 +78,11 @@ Assuming the initial Network was empty, you would end with {a a a, a b c, d e f,
 
 When the interpreter is given a Name the working state is checked to see if it contains that value,
 and if it does not exist there the instance's combinators are checked to see if one matches.
+
+### Network Names
+
+When the interpreter is given a Network Name the working state's network is switched to the one given.
+If it doesn't exist an empty Network is created.
 
 ### Quotes
 
