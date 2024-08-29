@@ -1,7 +1,3 @@
----
-layout: Doc.liquid
----
-
 # Ligature's Data Model
 
 Ligature tries to have a minimal data model.
@@ -16,7 +12,7 @@ Value =
     | String(string)
     | Int(bigint)
     | Bytes(Array<u8>)
-    | Pipeline(Array<Pipeline | Name | Network>)
+    | Quote(Array<Value>)
 Statement = { entity: Name | Slot, attribute: Name | Slot, value: Value }
 Network = Set<Statement>
 ```
@@ -30,15 +26,16 @@ A Value can be either an Name, Slot, or a Literal.
 ### Names
 
 Names are used to refer to a concept or object in Ligature.
-Currently, a valid Name is a string that starts with either an underscore or a character from a-z or A-Z or 0-9,
-and is followed any number of characters that are valid in IRIs (https://www.ietf.org/rfc/rfc3987.txt).
+Currently, a valid Name is a string that starts with a character matching `[a-zA-Z_:|=]` and is followed any number of characters that are valid in IRIs (https://www.ietf.org/rfc/rfc3987.txt).
 Below is the regular expression that expresses what a valid Name is.
 
 ```regexp
-^[a-zA-Z0-9-._~:/?#\[\]@!$&'()*+,;%=\x{00A0}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFEF}\x{10000}-\x{1FFFD}
+^[a-zA-Z_:|=][a-zA-Z0-9-._~:/?#\[\]@!$&'()*+,;%=\x{00A0}-\x{D7FF}\x{F900}-\x{FDCF}\x{FDF0}-\x{FFEF}\x{10000}-\x{1FFFD}
 \x{20000}-\x{2FFFD}\x{30000}-\x{3FFFD}\x{40000}-\x{4FFFD}\x{50000}-\x{5FFFD}\x{60000}-\x{6FFFD}
 \x{70000}-\x{7FFFD}\x{80000}-\x{8FFFD}\x{90000}-\x{9FFFD}\x{A0000}-\x{AFFFD}\x{B0000}-\x{BFFFD}
 \x{C0000}-\x{CFFFD}\x{D0000}-\x{DFFFD}\x{E1000}-\x{EFFFD}]+$
+```
+
 ### Network Names
 
 A Network Name is a name that refers to a Network instance.

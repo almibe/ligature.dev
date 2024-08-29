@@ -1,7 +1,3 @@
----
-layout: Doc.liquid
----
-
 # Wander
 
 * This document is in the process of being rewritten, so parts are incorrect. *
@@ -36,7 +32,7 @@ Value =
     | String(string)
     | Int(bigint)
     | Bytes(Array<u8>)
-    | Pipeline(Array<Pipeline | Name | Network>)
+    | Quote(Array<Value>)
 Statement = { entity: Name | Slot, attribute: Name | Slot, value: Value }
 Network = Set<Statement>
 ```
@@ -48,7 +44,7 @@ Element =
     | Value.Network
     | Value.Name
     | Value.NetworkName
-    | Value.Pipeline
+    | Value.Quote
 Script = Array[Element]
 ```
 
@@ -71,8 +67,8 @@ The Network you are interpreting is simply unioned with the Network that is pass
 {a a a, d e f, z z z}
 ```
 
-If the code above was ran as a Wander script it would interpret three different Networks.
-Assuming the initial Network was empty, you would end with {a a a, a b c, d e f, z z z}.
+If the code above was ran as a Wander script it would interpret four different Networks.
+Assuming the initial Network was empty, you would end with `{a a a, a b c, d e f, z z z}`.
 
 ### Names
 
@@ -84,13 +80,6 @@ and if it does not exist there the instance's combinators are checked to see if 
 When the interpreter is given a Network Name the working state's network is switched to the one given.
 If it doesn't exist an empty Network is created.
 
-### Quotes
+### Quote
 
-When a quote is ran a copy of the working state is made and it is used when making calls.
-This allows you to make calls with arguments without polluting your working state.
-It also allows you to build more complicated chains of calls and name them so they can be used later.
-
-```
-{ a b c } [ {d e f} ]
-```
-
+When a Quote is interpreted i

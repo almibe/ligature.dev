@@ -1,7 +1,3 @@
----
-layout: Main.liquid
----
-
 <h3>What is Ligature?</h3>
 
 Ligature is a libre (free and open source, MPL-2.0 licensed) toolkit for working with semantic networks that focuses on simplicity, pragmatism, and portability.
@@ -25,7 +21,7 @@ That article contains an example semantic network.
 Below is that semantic network expressed in Ligature. 
 I replaced "is a" and "is an" with a colon and changed "lives in" to "lives-in" but those are the only changes.
 
-```wander
+```
 {
   Cat : Mammal, Cat has Fur,
   Bear : Mammal, Bear has Fur,
@@ -40,8 +36,10 @@ I replaced "is a" and "is an" with a colon and changed "lives in" to "lives-in" 
 Ligature is made up of several parts each documented separately.
 
  * [Ligature](/doc/ligature/) - the data model itself, called Ligature.
- * [Wander](/doc/wander/) - a scripting language that  querying and transforming Networks.
+ * [Wander](/doc/wander/) - a declarative scripting language for querying and transforming Ligature's Networks.
  * [Combinators](/doc/combinators/) - an overview of the Combinators provided by Wander.
+ * [Bend](/doc/bend/) - A Wander library for working with ontologies in Ligature.
+ * [Shape](/doc/shape/) - A Wander library for working with constraints on Ligature's Networks.
 
 <h3>Implementations and Related Tools</h3>
 
@@ -52,9 +50,9 @@ Ligature is made up of several parts each documented separately.
 
 <ul>
   <li><a href="https://github.com/almibe/ligature.dev">ligature.dev</a> - This website!</li>
-  <li><a href="https://github.com/almibe/ligature-fs">Ligature F#</a> - An implementation of Ligature written in <a href="https://fsharp.org">F#</a>. This is currently the most complete and actively developed implementation.
+  <li><a href="https://github.com/almibe/ligature-fs">Ligature F#</a> - An implementation of Ligature written in <a href="https://fsharp.org">F#</a>. It targets DotNet Core and JS via Fable. This is currently the most complete and actively developed implementation.
   It supports running in the browser via Fable an F# to JS compiler.</li>
-  <li><a href="https://github.com/almibe/ligature-web">Ligature Web</a> - Libraries for working with Ligature on the web.</li>
+  <li><a href="https://github.com/almibe/ligature-lab">Ligature Lab</a> - A web application for working with Ligature and Wander.</li>
   <li><a href="https://github.com/almibe/ligature-rs">Ligature Rust</a> - An implementation of Ligature written in <a href="https://www.rust-lang.org/">Rust</a>.</li>
   <li><a href="https://github.com/almibe/ligature-scala">Ligature Scala</a> - An implementation of Ligature written in <a href="https://scala-lang.org/">Scala</a> for the JVM.</li>
   <li><a href="https://github.com/almibe/ligature-desktop">Ligature Desktop</a> - A desktop application based on <a href="https://tauri.app">Tauri</a> for working with Ligature.</li>
