@@ -37,9 +37,6 @@ Ligature is made up of several parts each documented separately.
 
  * [Ligature](/doc/ligature/) - the data model itself, called Ligature.
  * [Wander](/doc/wander/) - a declarative scripting language for querying and transforming Ligature's Networks.
- * [Combinators](/doc/combinators/) - an overview of the Combinators provided by Wander.
- * [Bend](/doc/bend/) - A Wander library for working with ontologies in Ligature.
- * [Shape](/doc/shape/) - A Wander library for working with constraints on Ligature's Networks.
 
 <h3>Implementations and Related Tools</h3>
 
@@ -52,18 +49,15 @@ Ligature is made up of several parts each documented separately.
   <li><a href="https://github.com/almibe/ligature.dev">ligature.dev</a> - This website!</li>
   <li><a href="https://github.com/almibe/ligature-fs">Ligature F#</a> - An implementation of Ligature written in <a href="https://fsharp.org">F#</a>. It targets DotNet Core and JS via Fable. This is currently the most complete and actively developed implementation.
   It supports running in the browser via Fable an F# to JS compiler.</li>
-  <li><a href="https://github.com/almibe/ligature-lab">Ligature Lab</a> - A web application for working with Ligature and Wander.</li>
   <li><a href="https://github.com/almibe/ligature-rs">Ligature Rust</a> - An implementation of Ligature written in <a href="https://www.rust-lang.org/">Rust</a>.</li>
   <li><a href="https://github.com/almibe/ligature-scala">Ligature Scala</a> - An implementation of Ligature written in <a href="https://scala-lang.org/">Scala</a> for the JVM.</li>
-  <li><a href="https://github.com/almibe/ligature-desktop">Ligature Desktop</a> - A desktop application based on <a href="https://tauri.app">Tauri</a> for working with Ligature.</li>
 </ul>
 
 <h3>Attribution</h3>
 
-<p>This website makes use of the follow projects and libraries</p>
+<p>This website makes use of the follow resources</p>
 
 <ul>
-  <li><a href="https://11ty.dev/">11ty</a></li>
   <li><a href="https://openmoji.org/library/emoji-1FAA2/">Logo Based on Openmoji's Knot</a></li>
   <li><a href="https://fonts.google.com/specimen/Comfortaa">Comfortaa font</a></li>
   <li><a href="https://fonts.google.com/specimen/Raleway">Raleway font</a></li>
