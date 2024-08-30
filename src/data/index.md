@@ -31,12 +31,7 @@ I replaced "is a" and "is an" with a colon and changed "lives in" to "lives-in" 
 }
 ```
 
-<h3>Learning More</h3>
-
-Ligature is made up of several parts each documented separately.
-
- * [Ligature](/doc/ligature/) - the data model itself, called Ligature.
- * [Wander](/doc/wander/) - a declarative scripting language for querying and transforming Ligature's Networks.
+Ligature and the tools around it allow you to work with data represented this way.
 
 <h3>Implementations and Related Tools</h3>
 
@@ -51,14 +46,4 @@ Ligature is made up of several parts each documented separately.
   It supports running in the browser via Fable an F# to JS compiler.</li>
   <li><a href="https://github.com/almibe/ligature-rs">Ligature Rust</a> - An implementation of Ligature written in <a href="https://www.rust-lang.org/">Rust</a>.</li>
   <li><a href="https://github.com/almibe/ligature-scala">Ligature Scala</a> - An implementation of Ligature written in <a href="https://scala-lang.org/">Scala</a> for the JVM.</li>
-</ul>
-
-<h3>Attribution</h3>
-
-<p>This website makes use of the follow resources</p>
-
-<ul>
-  <li><a href="https://openmoji.org/library/emoji-1FAA2/">Logo Based on Openmoji's Knot</a></li>
-  <li><a href="https://fonts.google.com/specimen/Comfortaa">Comfortaa font</a></li>
-  <li><a href="https://fonts.google.com/specimen/Raleway">Raleway font</a></li>
 </ul>

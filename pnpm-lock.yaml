@@ -15,8 +15,8 @@ importers:
         specifier: ^6.33.0
         version: 6.33.0
       '@ligature/ligature':
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: link:..\ligature-fs\src\LigatureFable\package
+        version: link:../ligature-fs/src/LigatureFable/package
       '@shoelace-style/shoelace':
         specifier: ^2.16.0
         version: 2.16.0(@types/react@18.3.4)
@@ -29,6 +29,9 @@ importers:
       marked:
         specifier: ^14.1.0
         version: 14.1.0
+      split-grid:
+        specifier: ^1.0.11
+        version: 1.0.11
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
@@ -322,9 +325,6 @@ packages:
 
   '@lezer/lr@1.4.2':
     resolution: {integrity: sha512-pu0K1jCIdnQ12aWNaAVU5bzi7Bd1w54J3ECgANPmYLtQKP0HBj2cE/5coBD66MT10xbtIuUr7tg0Shbsvk0mDA==}
-
-  '@ligature/ligature@0.6.0':
-    resolution: {integrity: sha512-ikv2Bztksff5mmsz2B2BI51CvZurSGJIrBuxIjSjJ6IqeIygyDvZBnFzBRIHIkqZzn5LSX39QzkjUCbKrICa/g==}
 
   '@lit-labs/ssr-dom-shim@1.2.1':
     resolution: {integrity: sha512-wx4aBmgeGvFmOKucFKY+8VFJSYZxs9poN3SDNQFF6lT6NrQUnHiPB2PWz2sc4ieEcAaYYzN+1uWahEeTq2aRIQ==}
@@ -1280,6 +1280,9 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
+  split-grid@1.0.11:
+    resolution: {integrity: sha512-ELtFtxc3r5we5GZfe6Fi0BFFxIi2M6BY1YEntBscKRDD3zx4JVHqx2VnTRSQu1BixCYSTH3MTjKd4esI2R7EgQ==}
+
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
@@ -1722,8 +1725,6 @@ snapshots:
   '@lezer/lr@1.4.2':
     dependencies:
       '@lezer/common': 1.2.1
-
-  '@ligature/ligature@0.6.0': {}
 
   '@lit-labs/ssr-dom-shim@1.2.1': {}
 
@@ -2697,6 +2698,8 @@ snapshots:
       sander: 0.5.1
 
   source-map-js@1.2.0: {}
+
+  split-grid@1.0.11: {}
 
   stackback@0.0.2: {}
 

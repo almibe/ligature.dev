@@ -13,6 +13,7 @@ Value =
     | Int(bigint)
     | Bytes(Array<u8>)
     | Quote(Array<Value>)
+    | Expression(Array<Value>)
 Statement = { entity: Name | Slot, attribute: Name | Slot, value: Value }
 Network = Set<Statement>
 ```

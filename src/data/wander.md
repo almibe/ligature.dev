@@ -33,6 +33,7 @@ Value =
     | Int(bigint)
     | Bytes(Array<u8>)
     | Quote(Array<Value>)
+    | Expression(Array<Value>)
 Statement = { entity: Name | Slot, attribute: Name | Slot, value: Value }
 Network = Set<Statement>
 ```
@@ -42,10 +43,9 @@ Wander can be viewed as an expansion of this model:
 ```
 Element =
     | Value.Network
-    | Value.Name
     | Value.NetworkName
-    | Value.Quote
-Script = Array[Element]
+    | Value.Expression
+Script = Array<Element>
 ```
 
 ## How Interpretation Works

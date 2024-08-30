@@ -34,10 +34,11 @@
 	"dependencies": {
 		"@codemirror/commands": "^6.6.0",
 		"@codemirror/view": "^6.33.0",
-		"@ligature/ligature": "^0.6.0",
+		"@ligature/ligature": "link:..\\ligature-fs\\src\\LigatureFable\\package",
 		"@shoelace-style/shoelace": "^2.16.0",
 		"codemirror": "^6.0.1",
 		"markdown-it": "^14.1.0",
-		"marked": "^14.1.0"
+		"marked": "^14.1.0",
+		"split-grid": "^1.0.11"
 	}
 }
