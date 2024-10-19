@@ -1,3 +1,7 @@
+---
+layout: Doc.liquid
+---
+
 # Combinators
 
 ## `union`
@@ -5,11 +9,9 @@
 Combine two Networks.
 
 ```wander
-@a {a b c}
-@b {d e f}
-@ { left = @a, right = @b, out = @out }
-union
-@out
+a {a b c}
+b {d e f}
+(union a b)
 ```
 
 ## `minus`
@@ -17,11 +19,9 @@ union
 Remove all Triples in the right Network from the left.
 
 ```wander
-@a {a b c, d e f}
-@b {d e f, g h i}
-@ { left = @a, right = @b, out = @out }
-union
-@out
+a {a b c, d e f}
+b {d e f, g h i}
+(minus a b)
 ```
 
 ## `apply`

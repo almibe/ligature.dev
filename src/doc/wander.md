@@ -1,3 +1,7 @@
+---
+layout: Doc.liquid
+---
+
 # Wander
 
 * This document is in the process of being rewritten, so parts are incorrect. *
@@ -19,22 +23,16 @@ Expect changes and some differences between this document and implementations fo
 ## Model
 
 A Wander script is made up of a list of Elements.
-An Element can be a Network, a Quote, or a Path.
+A Element can be a Network, a Quote, or a Path.
 When a script is ran each Element in the list is evaluated.
 
 This is the model for Ligature given earlier:
 
 ```
-Value =
-    | Name(string)
+Identifier =
+    | Symbol(string)
     | Slot(string)
-    | NetworkName(string)
-    | String(string)
-    | Int(bigint)
-    | Bytes(Array<u8>)
-    | Quote(Array<Value>)
-    | Expression(Array<Value>)
-Statement = { entity: Name | Slot, attribute: Name | Slot, value: Value }
+Statement = { entity: Identifier, attribute: Identifier, value: Identifier }
 Network = Set<Statement>
 ```
 
@@ -42,22 +40,21 @@ Wander can be viewed as an expansion of this model:
 
 ```
 Element =
-    | Value.Network
-    | Value.NetworkName
-    | Value.Expression
+    | Value.Symbol Value.Network
+    | Quote(Array<Value>)
+    | Expression(Array<Value>)
 Script = Array<Element>
 ```
 
 ## How Interpretation Works
 
 When you run a Wander script each Element is interpreted separately and in the order it is recieved.
-When each element is ran you can think of it as being implicitly passed a Network and returning a Network.
+When each Element is ran you can think of it as being implicitly passed the store instance and returning a single value.
 If you run multiple Elements then the output Network of one Element is passed as the input of the next.
 Below I will go over how each of the three types of Elements is interpreted.
 
 ### Networks
 
-Networks are the easiest.
 The Network you are interpreting is simply unioned with the Network that is passed implicitly to it and the result is returned.
 
 ```
@@ -70,16 +67,6 @@ The Network you are interpreting is simply unioned with the Network that is pass
 If the code above was ran as a Wander script it would interpret four different Networks.
 Assuming the initial Network was empty, you would end with `{a a a, a b c, d e f, z z z}`.
 
-### Names
+### Expression
 
-When the interpreter is given a Name the working state is checked to see if it contains that value,
-and if it does not exist there the instance's combinators are checked to see if one matches.
-
-### Network Names
-
-When the interpreter is given a Network Name the working state's network is switched to the one given.
-If it doesn't exist an empty Network is created.
-
-### Quote
-
-When a Quote is interpreted i
+When a Expression is interpreted i

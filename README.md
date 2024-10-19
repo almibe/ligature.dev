@@ -1,7 +1,13 @@
 # ligature.dev
 
-pnpm install
-pnpm run dev
+Ligature's website
+
+To develop this site use:
+
+```bash
+npm install
+npx @11ty/eleventy --serve
+```
 
 ## Attribution
 
