@@ -2,23 +2,41 @@
 layout: Main.liquid
 ---
 
-<h3>What is Ligature?</h3>
+### What is Ligature?
 
 Ligature is a libre (free and open source, MPL-2.0 licensed) knowledge representation toolkit that focuses on simplicity, pragmatism, and portability.
 It is currently under heavy design and development, and not ready for real world use, but experimentation and feedback are encouraged and much welcomed.
 This website aims to document the current state of Ligature and link to resources.
 
-<h3>Implementations and Related Tools</h3>
+### Projects
 
-<p>
-  Work on Ligature is spread out over a number of git repositories.
-  Below is a list of them.
-</p>
+#### Ligature
 
-<ul>
-  <li><a href="https://github.com/almibe/ligature.dev">ligature.dev</a> - This website!</li>
-  <li><a href="https://github.com/almibe/ligature-fs">Ligature F#</a> - An implementation of Ligature written in <a href="https://fsharp.org">F#</a>. It targets DotNet Core and JS via Fable. This is currently the most complete and actively developed implementation.
-  It supports running in the browser via Fable an F# to JS compiler.</li>
-  <li><a href="https://github.com/almibe/ligature-rs">Ligature Rust</a> - An implementation of Ligature written in <a href="https://www.rust-lang.org/">Rust</a>.</li>
-  <li><a href="https://github.com/almibe/ligature-scala">Ligature Scala</a> - An implementation of Ligature written in <a href="https://scala-lang.org/">Scala</a> for the JVM.</li>
-</ul>
+Ligature's core project provides a data model for other projects to build on top of.
+
+ * [Docs](/docs/ligature/)
+ * [@ligature/ligature](https://www.npmjs.com/package/@ligature/ligature) - npm package
+ * [github.com/almibe/ligature-fs](https://github.com/almibe/ligature-fs) - F# implementation, main implementation
+ * [github.com/almibe/ligature-rs](https://github.com/almibe/ligature-rs) - Rust implementation, behind F# implementation
+
+#### Wander
+
+Wander is a scripting language designed to manipulate Ligature's data model.
+
+* [Docs](/docs/wander/)
+
+#### tiny-dl
+
+tiny-dl implements ideas from Description Logic using Ligature's data model.
+
+* [Docs](/docs/tiny-dl/)
+
+#### Ligature Components
+
+A set of UI components for working with Ligature in the browser.
+
+* [Docs](/docs/components)
+* [@ligature/ligature-components](https://www.npmjs.com/package/@ligature/ligature-components) - npm package
+* [github.com/almibe/ligature-components](https://github.com/almibe/ligature-components)
+
+Logo credit: https://openmoji.org/library/emoji-1FAA2/

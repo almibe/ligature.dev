@@ -11,5 +11,9 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "esbuild": "^0.24.0"
+  },
+  "dependencies": {
+    "@ligature/ligature": "^0.7.0",
+    "@ligature/ligature-components": "^0.6.0"
   }
 }
