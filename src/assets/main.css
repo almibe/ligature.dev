@@ -8,6 +8,11 @@
     src: url('font/Raleway-VariableFont_wght.ttf');
 }
 
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url('font/SourceCodePro-VariableFont_wght.ttf');
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Comfortaa';
 }
@@ -75,6 +80,10 @@ blockquote {
     height: 400px;
     grid-column: 2;
     grid-row: 1;
+}
+
+#editor *, code, pre {
+    font-family: 'SourceCodePro';
 }
 
 #graph {
