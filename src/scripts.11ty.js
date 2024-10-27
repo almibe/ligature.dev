@@ -13,7 +13,7 @@ module.exports = class {
 
   async render() {
     await esbuild.build({
-      entryPoints: ['src/main.js'],
+      entryPoints: ['src/components.js'],
       bundle: true,
       minify: isProduction,
       outdir: '_site/js',

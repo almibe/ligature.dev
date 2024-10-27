@@ -1,0 +1,11 @@
+---
+layout: Doc.liquid
+---
+
+let result {
+    a b d
+},
+
+let meta {
+    display = table
+}
