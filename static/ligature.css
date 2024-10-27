@@ -63,54 +63,7 @@ blockquote {
     border-radius: .75em;
 }
 
-#demo {
-    display: grid;
-	align-items: center;
-}
-
-#demo-markup {
-    grid-column: 1;
-    grid-row: 1
-}
-
-#demo-graph {
-    width: 600px;
+.ligature-display-graph {
+    width: 400px;
     height: 400px;
-    grid-column: 2;
-    grid-row: 1;
 }
-
-/* split grid */
-#split-panel {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 300px 10px 1fr;
-  }
-  
-  .gutter {
-    grid-row: 1/-1;
-    cursor: col-resize;
-    grid-column: 2;
-  }
-  
-  .gutter {
-    z-index:1;
-    background-color: #eee;
-    background-repeat: no-repeat;
-    background-position: 50%;
-  }
-  
-  .gutter.gutter-horizontal {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
-    cursor: col-resize;
-  }
-  
-  #resource-panel {
-    z-index:0;
-  }
-  
-  #content-panel {
-    z-index:1; 
-    background: #FFF
-  }

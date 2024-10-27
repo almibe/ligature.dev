@@ -39,4 +39,10 @@ A set of UI components for working with Ligature in the browser.
 * [@ligature/ligature-components](https://www.npmjs.com/package/@ligature/ligature-components) - npm package
 * [github.com/almibe/ligature-components](https://github.com/almibe/ligature-components)
 
+#### Sisal
+
+Sisal is a plugin for 11ty that integrates the two projects.
+
+ * [Docs](/docs/sisal)
+
 Logo credit: [https://openmoji.org/library/emoji-1FAA2/](openmoji.org/library/emoji-1FAA2/)

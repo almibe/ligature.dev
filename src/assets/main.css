@@ -77,7 +77,17 @@ blockquote {
     font-family: 'SourceCodePro';
 }
 
-#graph {
+.ligature-display-graph {
     width: 400px;
     height: 400px;
 }    
+
+pre {
+    padding: 1em;
+    background-color: lavender;
+}
+
+.ligature-display pre {
+    padding: 1em;
+    background-color: white;
+}
