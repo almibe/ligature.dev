@@ -25,12 +25,12 @@ A Wander script is made up of a list of commands.
 Below is pseudocode of Wander's syntax.
 
 ```
-Symbol = string
-Entry = Symbol Symbol Symbol
+Element = string
+Entry = Element Element Element
 NetworkLiteral = '{' (Entry ( ',' Entry )* ','?)? '}'
-Argument = Symbol | NetworkLiteral | NestedCall
+Argument = Element | NetworkLiteral | NestedCall
 NestedCall = '(' (Call ( ',' Call )* ','?)? ')'
-Call = Symbol Argument*
+Call = Element Argument*
 Script = (Call ( ',' Call )* ','?)?
 ```
 
@@ -40,7 +40,7 @@ When you run a Wander script each call is interpreted separately and in the orde
 
 ### Command Calls
 
-Calls in Wander are made up of a command name (a symbol) and its arguments.
+Calls in Wander are made up of a command name (an element) and its arguments.
 Calls can be separated by commas.
 
 ```

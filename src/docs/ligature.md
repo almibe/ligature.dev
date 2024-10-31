@@ -9,23 +9,22 @@ Currently, Ligature only has a handful of data types that are supported.
 Below is psudeocode for Ligature's data model.
 
 ```
-Symbol(string)
-Extension = { element: Symbol, concept: Symbol }
-NonExtension = { element: Symnol, concept: Symbol }
-Role = { first: Symbol, second: Symbol, role: Symbol }
+Element(string)
+ConceptName = Element
+RoleName = Element
+Extension = { element: Element, concept: ConceptName }
+NonExtension = { element: Element, concept: ConceptName }
+Role = { first: Element, second: Element, role: RoleName }
 Entry = Extension | NonExtension | Role
 Network = Set<Entry>
 ```
 
-### Symbols
-
-Symbols are used to refer to a concept, role, or element in Ligature.
-Symbols are named by a string of characters.
-See [Wander's documentation](/docs/wander/) for specifics.
-
 ### Elements
 
 An element in Ligature is an object or idea you are describing.
+Elements are used to refer to a concept, role, or element in Ligature.
+Elements are named by a string of characters.
+See [Wander's documentation](/docs/wander/) for specifics.
 
 ### Concepts
 
