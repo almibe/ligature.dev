@@ -1,5 +1,10 @@
 import { run } from "@ligature/ligature";
+import { toGraph } from "@ligature/ligature"
+import Graph from "graphology";
+import markdownit from 'markdown-it'
 import { Liquid } from "liquidjs"
+
+const md = markdownit()
 
 export function printNetwork(result) {
   let res = "{\n"
@@ -57,6 +62,7 @@ export default function sisalPlugin(eleventyConfig, pluginOptions) {
               } else if (displayType == "graph") {
                   return engine.render(graphTemplate, { id: randId(), data: JSON.stringify(scriptResult["result"]) })
               } else if (displayType == "notebook") {
+                  //console.log(processNotebook(scriptResult["result"]))
                   return engine.render(notebookTemplate, { id: randId(), data: JSON.stringify(scriptResult["result"]) } )
               } else {
                   throw "Invalid display metadata provided, only text, graph, table, or notebook display supported currently."
@@ -72,87 +78,87 @@ export default function sisalPlugin(eleventyConfig, pluginOptions) {
   });
 }
 
-// import { Entry, Role, run } from "@ligature/ligature";
-// import { toGraph } from "@ligature/ligature"
-// import Graph from "graphology";
-// import markdownit from 'markdown-it'
-// const md = markdownit()
 
-// function getType(graph, node) {
-//     let res = null
-//     graph.edges(node).forEach(edge => {
-//         const target = graph.target(edge)
-//         const attrs = graph.getEdgeAttributes(edge)
-//         if (attrs.type == "extension" && target == "MarkdownCell") {
-//             res = "MarkdownCell"
-//         }
-//         if (attrs.type == "extension" && target == "WanderCell") {
-//             res = "WanderCell"
-//         }
-//     })
-//     return res
-// }
+function getType(graph, node) {
+    let res = null
+    graph.edges(node).forEach(edge => {
+        const target = graph.target(edge)
+        const attrs = graph.getEdgeAttributes(edge)
+        if (attrs.type == "extension" && target == "MarkdownCell") {
+            res = "MarkdownCell"
+        }
+        if (attrs.type == "extension" && target == "WanderCell") {
+            res = "WanderCell"
+        }
+    })
+    return res
+}
 
-// function getSource(graph, node) {
-//     let source = null
-//     graph.edges(node).forEach(edge => {
-//         const attrs = graph.getEdgeAttributes(edge)
-//         if (attrs.type == "role" && attrs.roleName == "source") {
-//             source = graph.target(edge)
-//         }
-//     })
-//     return source
-// }
+function getSource(graph, node) {
+    let source = null
+    graph.edges(node).forEach(edge => {
+        const attrs = graph.getEdgeAttributes(edge)
+        if (attrs.type == "role" && attrs.roleName == "source") {
+            source = graph.target(edge)
+        }
+    })
+    return source
+}
 
-// function getNext(graph, node) {
-//     let next = null
-//     graph.edges(node).forEach(edge => {
-//         const attrs = graph.getEdgeAttributes(edge)
-//         const source = graph.source(edge)
-//         if (source == node && attrs.type == "role" && attrs.roleName == "next") {
-//             next = graph.target(edge)
-//         }
-//     })
-//     return next
-// }
+function getNext(graph, node) {
+    let next = null
+    graph.edges(node).forEach(edge => {
+        const attrs = graph.getEdgeAttributes(edge)
+        const source = graph.source(edge)
+        if (source == node && attrs.type == "role" && attrs.roleName == "next") {
+            next = graph.target(edge)
+        }
+    })
+    return next
+}
 
-// export function showNotebook(el, network) {
-//     if (el == null) {
-//         throw "Illegal arg to showNotebook"
-//     }
-//     const graph = toGraph(network)
-//     let start = null;
-//     graph.forEachEdge((edgeKey) => {
-//         const source = graph.source(edgeKey)
-//         const target = graph.target(edgeKey)
-//         const attrs = graph.getEdgeAttributes(edgeKey)
-//         if (attrs.type == "extension" && target == 'NotebookStart') {
-//             start = source
-//         }
-//     })
-//     if (start != null) {
-//         let currentNode = start
-//         while (currentNode != null) {
-//             const type = getType(graph, currentNode)
-//             if (type == "MarkdownCell") {
-//                 const div = document.createElement("div")
-//                 const source = getSource(graph, currentNode)
-//                 div.innerHTML = md.render(source)
-//                 el.appendChild(div)
-//             } else if (type == "WanderCell") {
-//                 const display = document.createElement("ligature-display")
-//                 display.innerText = getSource(graph, currentNode)
-//                 el.appendChild(display)
-//             } else if (type == "NetworkCell") {
-//                 throw "TODO"
-//             } else {
-//                 throw "TODO"
-//             }
-//             currentNode = getNext(graph, currentNode)
-//         }
-//     } else {
-//         const root = document.createElement("div")
-//         root.textContent = "Invalid network passed to showNotebook."
-//         el.appendChild(root)
-//     }
-// }
+/**
+ * Takes a network and returns a data structure that is easier to process.
+ * 
+ * [
+ *   {
+ *     name: string,
+ *     type: "MarkdownCell" | "WanderCell" | "NetworkCell"
+ *     source: any
+ *     display: string
+ *   }
+ * ]
+ */
+export function processNotebook(network) {
+    const graph = toGraph(network)
+    let start = null;
+    let results = []
+    graph.forEachEdge((edgeKey) => {
+        const source = graph.source(edgeKey)
+        const target = graph.target(edgeKey)
+        const attrs = graph.getEdgeAttributes(edgeKey)
+        if (attrs.type == "extension" && target == 'NotebookStart') {
+            start = source
+        }
+    })
+    if (start != null) {
+        let currentNode = start
+        while (currentNode != null) {
+            const type = getType(graph, currentNode)
+            if (type == "MarkdownCell") {
+              const source = getSource(graph, currentNode)
+              results.push({ name: "cell0", type: type, source: md.render(source) })
+            } else if (type == "WanderCell") {
+//                throw "TODO"
+            } else if (type == "NetworkCell") {
+//                throw "TODO"
+            } else {
+//                throw "TODO"
+            }
+            currentNode = getNext(graph, currentNode)
+        }
+        return results;
+    } else {
+        return [ { name: "cell0", type: "MarkdownCell", source: "*Invalid network passed to showNotebook*" } ]
+    }
+}
