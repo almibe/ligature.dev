@@ -28,8 +28,8 @@ Below is pseudocode of Wander's syntax.
 Element = string
 Entry = Element Element Element
 NetworkLiteral = '{' (Entry ( ',' Entry )* ','?)? '}'
-Argument = Element | NetworkLiteral | NestedCall
-NestedCall = '(' (Call ( ',' Call )* ','?)? ')'
+Argument = Element | NetworkLiteral | Quote
+Quote = '(' (Argument | ',')* ')'
 Call = Element Argument*
 Script = (Call ( ',' Call )* ','?)?
 ```
