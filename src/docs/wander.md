@@ -4,9 +4,9 @@ layout: Doc.liquid
 
 # Wander
 
-* This document is in the process of being rewritten, so parts are incorrect. *
+*This document is in the process of being rewritten, so parts are incorrect.*
 
-* This document assumes you are familiar with [Ligature's data model](/docs/ligature/). *
+*This document assumes you are familiar with [Ligature's data model](/docs/ligature/).*
 
 Wander is a scripting language for working with Ligature's data model.
 It is a very simple programming language that is missing many features most languages possess.
@@ -23,15 +23,15 @@ Expect changes and some differences between this document and implementations fo
 
 A Wander script is made up of a list of commands.
 Below is pseudocode of Wander's syntax.
+It extends Ligature's syntax.
 
 ```
-Element = string
-Entry = Element Element Element
-NetworkLiteral = '{' (Entry ( ',' Entry )* ','?)? '}'
-Argument = Element | NetworkLiteral | Quote
 Quote = '(' (Argument | ',')* ')'
+Argument = Element | Network | Quote | Literal | Variable
 Call = Element Argument*
-Script = (Call ( ',' Call )* ','?)?
+Assignment = Variable '=' Argument | Call 
+Statement = Assignment | Call
+Script = (Statement ( ',' Statement )* ','?)?
 ```
 
 ## How Interpretation Works
