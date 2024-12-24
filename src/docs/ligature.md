@@ -12,13 +12,8 @@ Element(string)
 Literal(string)
 Variable(string)
 Value = Literal | Element
-Extends = { element: Element, concept: Element }
-NotExtends = { element: Element, concept: Element }
-Attribute = { element: Element, attribute: Element, value: Value }
-Entry = Extends | NotExtends | Attribute
-Network = Set<Entry>
-Pattern = { element: Element | Variable, attribute: Element | Variable, value: Value | Variable }
-PatternNetwork = Set<Pattern>
+Statement = { element: Element | Variable, attribute: Element | Variable, value: Value | Variable }
+Network = Set<Statement>
 ```
 
 ### Elements
@@ -37,21 +32,11 @@ You cannot make statements about literal values, like you can with Elements.
 
 Variables are values that can represent other values.
 
-### Concepts
+### Statements
 
-Concepts represent sets of Elements.
-
-### Extends and NotExtends
-
-Extensions allow you to say that an individual element extends a concept, both represented by symbols.
-Examples could be that a car extends Vechicle or 0249250940183 extends AccountNumber.
-NonExtensions allow you to note that an individual does not extends a concept.
-NonExtensions are useful when doing reasoning tasks to find clashes.
-
-### Attributes
-
-An Attribute is a triple made up of an Element being described, an Element representing the Attribute name, and the Value for that Attribute.
+A Statement is a triple made up of an Element being described, an Element representing the Attribute name, and the Value for that Attribute.
+Any of these parts can also be a variable to support operations for queries and transformations.
 
 ### Network
 
-A Network in Ligature is a collection of entries made up of instances of Extends, NotExtends, and Attributes statements.
+A Network in Ligature is a collection of entries made up of instances of Statements.

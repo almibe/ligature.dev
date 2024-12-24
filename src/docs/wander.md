@@ -22,28 +22,67 @@ Expect changes and some differences between this document and implementations fo
 ## Model
 
 A Wander script is made up of a list of commands.
-Below is pseudocode of Wander's syntax.
-It extends Ligature's syntax.
 
-```
-Quote = '(' (Argument | ',')* ')'
-Argument = Element | Network | Quote | Literal | Variable
-Call = Element Argument*
-Assignment = Variable '=' Argument | Call 
-Statement = Assignment | Call
-Script = (Statement ( ',' Statement )* ','?)?
-```
-
-## How Interpretation Works
-
-When you run a Wander script each call is interpreted separately and in the order it is recieved.
-
-### Command Calls
+## Command Calls
 
 Calls in Wander are made up of a command name (an element) and its arguments.
 Calls can be separated by commas.
 
+```wander
+network.union {a b c} {d e f},
 ```
-function-name arg1 arg2,
-function-name arg1 { a b c } (inner-call { another : network })
+
+## Assignments
+
+Assignment statements allow you to assign a value to a variable that can be used later.
+
+```wander
+?test = { a b c },
+network.union ?test {d e f}
+```
+
+## Pipes
+
+Putting a `|` in the arguments to a call allows you to chain calls together.
+The following calls are equivalent.
+
+```wander
+network.union {a b c} {d e f} | network.count
+```
+
+```wander
+network.count (network.union {a b c} {d e f})
+```
+
+You can chain any number of statements together as long as the last argument of the next command is the output of the previous.
+
+```wander
+import core,
+import network,
+import tinydl,
+
+union {betty : Cat} {anna : Dog}
+| infer {Cat subconcept-of Mammal, Dog subconcept-of Mammal, Mammal subconcept-of Animal}
+| filter { ?who : Animal }
+| count
+```
+
+## Syntax
+
+Below is incomplete pseudocode of Wander's syntax.
+
+```
+Element = ???
+Literal = '"' + ??? '"'
+Variable = '?' + ???
+Value = Literal | Element
+Statement = (Element | Variable) ws+ (Element | Variable) ws+ (Value | Variable)
+Network = '{' WanderStatement ( ',' WanderStatement )* ','? '}'
+Pipe = '|'
+Quote = '(' (Argument | ',')* ')'
+Argument = Element | Network | Quote | Literal | Variable | Pipe
+Call = Element Argument*
+Assignment = Variable '=' (Argument | Call)
+WanderStatement = Assignment | Call
+Script = (WanderStatement ( ',' WanderStatement )* ','?)?
 ```

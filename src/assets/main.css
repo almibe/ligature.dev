@@ -84,7 +84,8 @@ blockquote {
 
 pre {
     padding: 1em;
-    background-color: lavender;
+    background-color: #eee;
+    border-radius: .75em;
 }
 
 .ligature-display pre {
