@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{{title}}</title>
+  <title>Try out Ligature</title>
   <meta name="description" content="Ligature's website">
   <meta name="author" content="Alex Michael Berry">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,16 +15,15 @@
 <body>
   <div>
     <div class="header">
-      <a href="/"><img src="/assets/logo.svg" alt="an image of a knot" height="120" width="120"/></a>
+      <a href="/"><img src="/assets/logo.svg" alt="an image of a knot" height="80" width="80"/></a>
       <div>
-        <h1 class="title"><a href="/">Ligature</a></h1>
-        <h2 class="subtitle"><a href="/">A Libre Knowledge<br/>Representation Toolkit</a></h2>
+        <h1 class="title"><a href="/">Try Ligature</a></h1>
       </div>
     </div>
-		{{content}}
+    <div><button id="runButton">Run</button></div> 
+    <div id="editor"></div>
+    <div id="results"></div>
   </div>
-  <div>
-    <a href="/">Home</a>
-  </div>
+  <script src="/js/components.js"></script>
 </body>
 </html>
