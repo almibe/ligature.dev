@@ -14,7 +14,7 @@ Ligature is made up of many projects.
 Below is an incomplete list of ones that are being developed.
 More will be added as they mature.
 
-## Ligature
+## Ligature's Data Model
 
 Ligature's core project provides a data model for other projects to build on top of.
 

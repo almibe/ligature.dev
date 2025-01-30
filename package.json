@@ -14,8 +14,8 @@
     "esbuild": "^0.24.0"
   },
   "dependencies": {
-    "@ligature/ligature": "^0.16.0",
-    "@ligature/ligature-components": "^0.13.0",
+    "@ligature/ligature": "^0.17.0",
+    "@ligature/ligature-components": "^0.14.0",
     "sisal": "^0.4.0"
   }
 }
