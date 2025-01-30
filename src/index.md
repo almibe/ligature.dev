@@ -47,22 +47,9 @@ A set of UI components for working with Ligature in the browser.
 * [@ligature/ligature-components](https://www.npmjs.com/package/@ligature/ligature-components) - npm package
 * [github.com/almibe/ligature-components](https://github.com/almibe/ligature-components)
 
-## Sisal
+## Repos
 
-Sisal is a plugin for 11ty that integrates the two projects.
-
- * [Docs](/docs/sisal/)
-
-## Ligature Desktop
-
-Ligature Desktop is a desktop application based on [Tauri](https://tauri.app).
-It is still early in development, but a public repo exists.
-
- * [github.com/almibe/ligature-desktop](https://github.com/almibe/ligature-desktop)
-
- * [github.com/almibe/ligature-fs](https://github.com/almibe/ligature-fs) - F# implementation, main implementation
- * [github.com/almibe/ligature-rs](https://github.com/almibe/ligature-rs) - Rust implementation, behind F# implementation
-
+* [github.com/almibe/ligature-fs](https://github.com/almibe/ligature-fs) - F# implementation, main implementation
+* [github.com/almibe/ligature-rs](https://github.com/almibe/ligature-rs) - Rust implementation, behind F# implementation
 
 Logo credit: [https://openmoji.org/library/emoji-1FAA2/](openmoji.org/library/emoji-1FAA2/)
-

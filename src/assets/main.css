@@ -92,3 +92,12 @@ pre {
     padding: 1em;
     background-color: white;
 }
+
+table, th, td {
+    padding: 10px;
+    border: 1px solid;
+}
+
+table {
+    border-collapse: collapse;
+}
