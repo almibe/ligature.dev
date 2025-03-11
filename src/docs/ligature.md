@@ -8,38 +8,27 @@ Ligature tries to have a minimal data model.
 Below is psudeocode for Ligature's data model.
 
 ```
-Element(string)
+Term(string)
 Literal(string)
-NetworkName(string)
-Variable(string)
-Value = Literal | Element | NetworkName | Quote
-Triple = { element: Element | Variable, attribute: Element | Variable, value: Value | Variable }
+Triple = (Term, Term, Term | Literal)
 Network = Set<Triple>
-Any = Network | Value
-Quote = [ Any ]
 ```
 
-### Elements
+Ligature has a triple-based data model.
+A Triple is made up of three parts.
+A collection of related Triples is called a Network.
+Triples are used to represent relationships between Inviduals, Concepts, and Literals.
+An Individual is represented by a Term and represents something you want to model in your system.
+A Concept is a set of Individuals, and Individual can explicitly or implicity belong to or not belong to a Concept.
 
-An element in Ligature is an object or idea you are describing.
-Elements are used to refer to a concept, role, or element in Ligature.
-Elements are named by a string of characters.
-See [Wander's documentation](/docs/wander/) for specifics.
+## Terms
 
-### Literals
+Terms are used to refer to a Concept, Role, or Individual in Ligature.
+Terms are named by a string of characters.
+Terms can be made up of any character that is valid in a URL.
 
-Literals represent literal values.
-You cannot make triples about literal values, like you can with Elements.
+## Literals
 
-### Variables
-
-Variables are used as slots for creating networks that can be used as patterns for queries.
-
-### Triples
-
-A Triple is a triple made up of an Element being described, an Element representing the Attribute name, and the Value for that Attribute.
-Any of these parts can also be a variable to support operations for queries and transformations.
-
-### Network
-
-A Network in Ligature is a collection of entries made up of instances of Triples.
+Literals are represented by a string of characters.
+They are used to represent concrete values.
+You cannot make a statement about a Literal like you can an Invidual.
