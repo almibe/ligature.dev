@@ -2,33 +2,100 @@
 layout: Doc.liquid
 ---
 
+*This document is in the process of being written, so expect missing and incomplete parts.*
+
 # Ligature's Data Model
 
-Ligature tries to have a minimal data model.
-Below is psudeocode for Ligature's data model.
+```
+LanguageTag(string)
+Namespace(string)
+Individual(string, Optional<Namespace>, Optional<LanguageTag>)
+Role(string)
+
+Assertion = 
+    | Triple(Individual, Role, Individual) 
+    | Instance(Individual, Concept)
+    | Same(Individual, Individual)
+    | Different(Individual, Individual)
+
+Concept = 
+    | AtomicConcept(string)
+    | TopConcept 
+    | BottomConcept 
+    | AndConcept(List<Concept>)
+    | OrConcept(List<Concept>)
+    | AllConcept(Role, Option<Concept>)
+    | ExistsConcept(Role, Option<Concept>)
+    | NotConcept(Concept)
+
+Definition = 
+    | Implies(Concept, Concept)
+    | Equivalent(Concept, Concept)
+
+KnowledgeBase(Set<Definition>, Set<Assertion>)
+```
+
+## Individual
+
+An individual element being described.
+
+## Role
+
+Used to connect two individuals.
+Roles are directed from one individual to another.
+We refer to these statements as triples.
+
+Given the triple
+
+`alice knows bob`
+
+or expressed in our pseudo-code above
+
+`Triple(Individual("alice", None, None) Role("knows") Individual("bob", None, None))`
+
+`alice` and `bob` are indviduals and `knows` is a role that connects them.
+
+## Concepts
+
+Concepts are sets of individuals.
+Examples could be the species of an animal or a tag used in a blog.
+
+## Instance
+
+To say that an individual belongs to a concept we say that the individual is an instance of that concept.
+
+`betty is a Cat`
+
+or
+
+`Instance(Individual("betty", None, None), AtomicConcept("Cat"))`
+
+The individual `betty` belongs to the concept `Cat`.
+
+## Concept Expressions
+
+Ligature allows you to represent complex concepts with concept expresssions.
+Using logical operators you can define complex concepts like this.
+
+In slightly more formal notation
 
 ```
-Term(string)
-Literal(string)
-Triple = (Term, Term, Term | Literal)
-Network = Set<Triple>
+CarnivorousPlant ≡ Carnivore ⊓ Plant
+betty : CarnivorousPlant
 ```
 
-Ligature has a triple-based data model.
-A Triple is made up of three parts.
-A collection of related Triples is called a Network.
-Triples are used to represent relationships between Inviduals, Concepts, and Literals.
-An Individual is represented by a Term and represents something you want to model in your system.
-A Concept is a set of Individuals, and Individual can explicitly or implicity belong to or not belong to a Concept.
+translated into pseudo-code
 
-## Terms
+```
+Equivalent(
+    AtomicConcept("CarnivorousPlant"), 
+    AndConcept([
+        AtomicConcept("Carnivore"), 
+        AtomicConcept("Plant")]))
+Instance(
+    Individual("betty", None, None),
+    AtomicConcept("CarnivorousPlant"))
+```
 
-Terms are used to refer to a Concept, Role, or Individual in Ligature.
-Terms are named by a string of characters.
-Terms can be made up of any character that is valid in a URL.
-
-## Literals
-
-Literals are represented by a string of characters.
-They are used to represent concrete values.
-You cannot make a statement about a Literal like you can an Invidual.
+Here we are saying the concept CarnivorousPlant is equivalent to the combination of being a Carnivore and being a Plant.
+We then say that betty is a CarnivorousPlant.
