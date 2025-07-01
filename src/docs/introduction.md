@@ -4,7 +4,7 @@ layout: Doc.liquid
 
 # Introduction
 
-**Note: this page is an incomplete draft, major sections are missing**
+*Note: this page is an incomplete draft, major sections are missing*
 
 Ligature is a data model and api created for knowledge representation.
 It is based on ideas from Description Logic (DL) which studies a family of logic-based knowledge represenation languages called description logics.
@@ -55,24 +55,21 @@ Later we'll expand on this simple model.
 
 Description Logic focuses on a base set of reasoning problems related to answering questions involving its data model.
 Ligature expresses these as a common API that can be provided by implementations.
-Below is a summary of the API.
+The details of the API are covered later, but for now we'll cover the reasoning tasks at a high level.
 
-| Name            | Arguments                      | Result          | Description                                                                |
-| --------------- | ------------------------------ | --------------- | -------------------------------------------------------------------------- |
-| KBs             | ()                             | Set<Name>       | Get all of the names of the knowledge bases in this store.                 |
-| AddKB           | Name                           | ()              | Add a new KB with the given name.                                          |
-| RemoveDB        | Name                           | ()              | Remove the KB with the given name.                                         |
-| Assert          | Name, Assertions               | ()              | Add the following Assertions to the KB with the given name.                |
-| Unassert        | Name, Assertions               | ()              | Remove the following Assertions from the KB with the given name.           |
-| ReadAsserts     | Name                           | Assertions      | Read all the Assertions from the KB with the given name.                   |
-| Define          | Name, Definitions              | ()              | Add the following Definitions to the KB with the given name.               |
-| Undefine        | Name, Definitions              | ()              | Remove the following Definitions from the KB with the given name.          |
-| ReadDefinitions | Name                           | Definitions     | Read all the Assertions from the KB with the given name.                   |
-| ReadKB          | Name                           | KnowledgeBase   | Read the Definitions and Assertions in the KB with the given name.         |
-| IsConsistent    | Name                           | bool            | Is the KB with the given name consistent?                                  |
-| IsSatisfiable   | Name, ConceptExpr              | bool            | Is the given concept expression satisfiable in the KB with the given name? |
-| IsInstance      | Name, Instance, ConceptExpr    | bool            | Is the given instance an instance of the given concept expression?         |
-| IsSubsumedBy    | Name, ConceptExpr, ConceptExpr | bool            | Is the first concept expression subsumed by the second concept expression? |
-| IsEquivalent    | Name, ConceptExpr, ConceptExpr | bool            | Is the first concept expression is equivalent to the second?               |
-| Query           | Name, ConceptExpr              | Set<Instance>   | Find all instances of the given concept expression.                        |
-| TableauModels   | Name                           | Set<Assertions> | Find all the models for a given KB using the tableau algorithm.            |
+The most general question we can ask about a knowledge base is if it is internally consistent.
+The example given above is consistent.
+However, if we added the assertion that betty is not an Animal, we would now have an inconsistent knowledge base.
+This is becuase we also state that all Cats are Animals so we end up saying that betty both is and is not an Animal.
+
+We can also ask questions about relationships in the knowledge base.
+Specifically, we can ask questions like 
+
+ * If different concepts are equivalent or subsumed by one another
+   * Are all mammals also animals?
+   * Are cat and feline equivalent?
+ * If a given instance belongs to a given concept definition.
+   * Is france and Country?
+ * Is it possible for a instance of a concept to exist or is this concept unsatisfiable?
+
+Now that we've introduced the basics of Ligature's data model and what types of reasoning tasks Ligature can perform with regards to this model.
