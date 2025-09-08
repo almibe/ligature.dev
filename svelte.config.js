@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-netlify';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from "mdsvex";
+import path from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,7 +16,12 @@ const config = {
 		}),
 		vitePreprocess(),
 	],
-	kit: { adapter: adapter() }
+	kit: { 
+		adapter: adapter(),
+		alias: {
+			'$data': path.resolve('./src/data'),
+		}
+	}
 };
 
 export default config;
