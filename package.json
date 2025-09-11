@@ -23,6 +23,6 @@
 	},
 	"dependencies": {
 		"@ligature/ligature": "^0.22.0",
-		"@ligature/ligature-components": "^0.18.0"
+		"@ligature/ligature-components": "file:../ligature-components/packages/ligature-components"
 	}
 }

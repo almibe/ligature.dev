@@ -12,5 +12,5 @@
       <h1 class="title"><a href="/">Try Ligature</a></h1>
     </div>
   </div>
-  <Editor>append-table(docs())</Editor>
+  <Editor name="try" script="append-table(docs())"></Editor>
 </div>

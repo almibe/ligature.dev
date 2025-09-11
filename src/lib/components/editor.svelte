@@ -2,13 +2,11 @@
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
   
-  const { children } = $props();
-  const uid = $props.id();
   let editor = null
-
+	let { name, script } = $props();
   onMount(async () => {
     const module = await import('@ligature/ligature-components');
-    editor = module.showEditor(document.querySelector("#editor-" + uid))
+    editor = module.showEditor(document.querySelector("#editor-" + name), script, { minHeight: "300px", maxHeight: "300px" })
   })
 
   async function run() {
@@ -16,8 +14,8 @@
 
     if (browser) {
         const script = editor.getValue()
-        const resultEl = document.querySelector("#result-" + uid)
-        const outputEl = document.querySelector("#output-" + uid)
+        const resultEl = document.querySelector("#result-" + name)
+        const outputEl = document.querySelector("#output-" + name)
         resultEl.innerHTML = ""
         outputEl.innerHTML = ""
         const result = module.printResult(module.runScript(script, outputEl))
@@ -29,8 +27,7 @@
 <div>
   <button onclick={run}>Run</button>
 </div> 
-<div  id="editor-{uid}" class="editor">
-    {@render children?.()}
+<div  id="editor-{name}" class="editor">
 </div>
-<div id="output-{uid}"></div>
-<pre><code id="result-{uid}"></code></pre>
+<div id="output-{name}"></div>
+<pre><code id="result-{name}"></code></pre>
